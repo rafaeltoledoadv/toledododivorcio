@@ -84,6 +84,9 @@
     .contact .disclaimer{color:var(--muted);font-size:14px}
 
     @media (max-width: 480px){ :root{ --shadow: 0 4px 10px rgba(0,0,0,.2);} .frame{box-shadow:var(--shadow);} }
+    @media (prefers-reduced-motion: reduce){
+      #introVideo{ animation: none !important }
+    }
     @media (max-width:1024px){
       .hero-grid{grid-template-columns:1fr}
       .about{grid-template-columns:1fr}
@@ -147,10 +150,12 @@
       </div>
       <div class="hero-media">
         <div class="frame video">
-          <video id="introVideo" src="video-marketing.mp4" playsinline muted autoplay></video>
-          <button id="unmuteBtn" class="unmute-btn">🔊 Ativar som</button>
+          <video id="introVideo" src="video-marketing.mp4" playsinline muted autoplay preload="metadata" controlslist="nodownload noplaybackrate" aria-label="Vídeo explicativo sobre divórcio online"></video>
+          <button id="unmuteBtn" class="unmute-btn" aria-label="Ativar som">🔊 Ativar som</button>
+          <button id="togglePlay" class="unmute-btn" style="bottom:14px; top:auto; left:auto; right:14px; transform:none; padding:10px 14px" aria-label="Pausar vídeo">⏸️ Pausar</button>
         </div>
-        <div class="mini-banner frame">✅ <b>Sem sair de casa</b> • 🔒 Verificação OAB <b>na triagem pelo WhatsApp</b> • ⏱️ Confirmação em menos de 1 minuto.</div>
+        <div id="videoFallback" class="mini-banner frame" style="display:none;margin-top:8px">⚠️ Não foi possível carregar o vídeo. Siga com o atendimento pelo WhatsApp que envio o vídeo por lá.</div>
+        <div class="mini-banner frame">✅ <b>Sem sair de casa</b> • 🔒 Verificação OAB <b>na triagem pelo WhatsApp</b> • ⏱️ Confirmação em menos de 1 minuto.</div>✅ <b>Sem sair de casa</b> • 🔒 Verificação OAB <b>na triagem pelo WhatsApp</b> • ⏱️ Confirmação em menos de 1 minuto.</div>
         <div class="ctas">
           <a class="btn btn-primary wa" href="#" data-utm="hero_after_video" data-msg="Acabei de assistir ao vídeo e quero iniciar meu divórcio online.">💬 Continuar pelo WhatsApp</a>
         </div>
@@ -330,9 +335,21 @@
         openWA(msg, utm);
       }, {passive:false});
 
-      // Vídeo: controle de áudio
-      var v=document.getElementById('introVideo'); var b=document.getElementById('unmuteBtn');
-      if(v && b){ b.addEventListener('click', function(){ v.muted = false; v.play(); b.hidden = true; }); }
+      // Vídeo: controles de áudio e play/pause
+      var v=document.getElementById('introVideo');
+      var b=document.getElementById('unmuteBtn');
+      var t=document.getElementById('togglePlay');
+      if(v){
+        function syncToggleLabel(){ if(!t) return; t.textContent = v.paused ? '▶️ Reproduzir' : '⏸️ Pausar'; t.setAttribute('aria-label', v.paused ? 'Reproduzir vídeo' : 'Pausar vídeo'); }
+        if(t){ t.addEventListener('click', function(){ if(v.paused){ v.play().catch(function(){}); } else { v.pause(); } syncToggleLabel(); }); }
+        if(b){ b.addEventListener('click', function(){ v.muted = false; v.play().catch(function(){}); b.hidden = true; }); }
+        try{
+          var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting){ v.pause(); syncToggleLabel(); } }); }, {threshold:0.25});
+          io.observe(v);
+        }catch(e){}
+        v.onerror=function(){ var fb=document.getElementById('videoFallback'); if(fb) fb.style.display='block'; };
+        v.onplay=syncToggleLabel; v.onpause=syncToggleLabel; syncToggleLabel();
+      }
 
       // Scroll "confiança"
       var trustLink = document.querySelector('a[href="#confianca"]');
