@@ -4,16 +4,32 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Divórcio Online | Rafael Toledo – OAB/RJ 227191</title>
-  <meta name="description" content="Divórcio online rápido e seguro no RJ e Baixada. Escritura em cartório 100% digital (e-Notariado). Rafael Toledo, OAB/RJ 227191. WhatsApp: (21) 99692-1402." />
+  <title>Divórcio Online em 1 Dia | Rafael Toledo – OAB/RJ 227191</title>
+  <meta name="description" content="Divórcio online em cartório (e-notariado) e judicial no Estado do Rio de Janeiro, com atendimento 100% digital pelo WhatsApp.">
   <link rel="canonical" href="https://seu-dominio.com/" />
-  <!-- Privacidade: evitar indexação orgânica -->
+
+  <!-- Privacidade: sem SEO orgânico -->
   <meta name="robots" content="noindex,nofollow,noarchive" />
   <meta name="googlebot" content="noindex,nofollow,noarchive" />
-  <!-- Performance: preconnect para WhatsApp e OAB -->
+
+  <!-- Performance: preconnect para WhatsApp e serviços OAB -->
   <link rel="preconnect" href="https://api.whatsapp.com" crossorigin>
   <link rel="preconnect" href="https://confirmadv.oab.org.br" crossorigin>
   <link rel="preconnect" href="https://cna.oab.org.br" crossorigin>
+
+  <!-- GA4 básico -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M06M084R2N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M06M084R2N');
+
+    // Placeholders para Google Ads (preencha se/quando tiver)
+    window.AW_ID = 'AW-XXXXXXXXXX';
+    window.AW_CONVERSION_LABEL = 'XXXXXXXXXXXX';
+  </script>
+
   <style>
     :root{
       --bg:#0b0f14;
@@ -29,86 +45,183 @@
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+    }
 
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
-    header{position:sticky;top:0;z-index:50;background:rgba(11,15,20,.8);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand-logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--brand),#1054ff);display:grid;place-items:center;font-weight:800;color:#001018;box-shadow:var(--shadow)}
-    .brand-logo svg{width:100%;height:100%;display:block;border-radius:12px}
-    .brand-logo.small{width:36px;height:36px}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(11,15,20,.88);
+      backdrop-filter:saturate(160%) blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .brand-logo{
+      width:48px;height:48px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--brand),#1054ff);
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      color:#001018;
+      box-shadow:var(--shadow);
+    }
     .brand-logo svg{width:100%;height:100%;display:block;border-radius:12px}
     .brand-logo.small{width:36px;height:36px}
     .brand strong{letter-spacing:.3px}
-    nav a{color:var(--muted);text-decoration:none;margin:0 10px;font-weight:600}
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      margin:0 6px;
+      font-weight:600;
+      font-size:14px;
+    }
     nav a:hover{color:var(--brand)}
 
-    .btn{appearance:none;border:none;cursor:pointer;border-radius:14px;padding:14px 20px;font-weight:800;letter-spacing:.25px;transition:.2s ease;display:inline-flex;gap:10px;align-items:center;text-decoration:none}
-    .btn-primary{background:linear-gradient(135deg,var(--brand),#4af3ff);color:#001018;box-shadow:0 10px 20px rgba(0,212,255,.25)}
-    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(0,212,255,.35)}
-    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,.18);color:var(--ink)}
-    .btn-outline:hover{border-color:var(--brand);color:var(--brand)}
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius:14px;
+      padding:12px 18px;
+      font-weight:800;
+      letter-spacing:.25px;
+      transition:.2s ease;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      text-decoration:none;
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--brand),#4af3ff);
+      color:#001018;
+      box-shadow:0 10px 20px rgba(0,212,255,.25);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 14px 28px rgba(0,212,255,.35);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,.18);
+      color:var(--ink);
+    }
+    .btn-outline:hover{
+      border-color:var(--brand);
+      color:var(--brand);
+    }
 
-    .hero{padding:64px 0 24px}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
-    .hero h1{font-size:42px;line-height:1.1;margin:0 0 14px}
-    .hero p.lead{font-size:18px;color:var(--muted);margin:0 0 24px}
-    .hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
-    .highlight-badge{display:inline-flex;gap:8px;align-items:center;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.18);color:var(--brand);padding:8px 12px;border-radius:999px;font-weight:700;margin-bottom:14px}
+    .pill{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:12px;
+    }
 
-    .frame{background:var(--bg-soft);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .video{width:100%;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden}
-    .video video{width:100%;height:100%;object-fit:cover;background:#04070b}
-    .video{position:relative}
-    .video .unmute-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(0,212,255,.95);color:#001018;border:none;border-radius:999px;padding:12px 16px;font-weight:900;letter-spacing:.2px;box-shadow:var(--shadow);cursor:pointer}
+    .hero{padding:56px 0 32px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      align-items:center;
+    }
+    .hero h1{
+      font-size:40px;
+      line-height:1.1;
+      margin:0 0 14px;
+    }
+    .hero h1 span{color:var(--brand)}
+    .hero p.lead{
+      font-size:18px;
+      color:var(--muted);
+      margin:0 0 22px;
+    }
+    .hero .ctas{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .highlight-badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      background:rgba(0,212,255,.08);
+      border:1px solid rgba(0,212,255,.18);
+      color:var(--brand);
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:700;
+      margin-bottom:14px;
+      font-size:13px;
+    }
+
+    .frame{
+      background:var(--bg-soft);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-media{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .video{
+      width:100%;
+      aspect-ratio:16/9;
+      border-radius:var(--radius);
+      overflow:hidden;
+      position:relative;
+      background:#04070b;
+    }
+    .video video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .video .unmute-btn{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      background:rgba(0,212,255,.95);
+      color:#001018;
+      border:none;
+      border-radius:999px;
+      padding:10px 18px;
+      font-weight:900;
+      letter-spacing:.2px;
+      box-shadow:var(--shadow);
+      cursor:pointer;
+      font-size:13px;
+      white-space:nowrap;
+    }
     .video .unmute-btn[hidden]{display:none}
-
-    .hero-media{display:flex;flex-direction:column;gap:10px}
-    .mini-banner{padding:10px 12px;font-weight:800;color:var(--ink);border-radius:12px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(0,212,255,.08),rgba(255,255,255,.02))}
-
-    .trust{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0 0}
-    .trust a{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--muted);text-decoration:none}
-    .trust a:hover{border-color:var(--brand);color:var(--brand)}
-
-    section{padding:56px 0;border-top:1px solid rgba(255,255,255,.06)}
-    section h2{font-size:32px;margin:0 0 16px}
-    section p.section-sub{margin:0 0 24px;color:var(--muted)}
-
-    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .step{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:18px}
-    .step b{display:block;margin-top:8px}
-    .step p{color:var(--muted);margin:8px 0 0}
-
-    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .card{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:12px}
-    .price{font-size:34px;font-weight:900;color:var(--brand)}
-    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);color:var(--brand);font-weight:800;font-size:12px}
-    .seal{position:absolute;top:14px;right:14px;background:linear-gradient(135deg,var(--brand),#4af3ff);color:#001018;font-weight:900;padding:6px 10px;border-radius:999px;box-shadow:0 6px 16px rgba(0,212,255,.25);font-size:12px}
-    .list{list-style:none;padding:0;margin:0}
-    .list li{display:flex;gap:10px;align-items:flex-start;margin:8px 0;color:var(--ink)}
-    .list li small{color:var(--muted)}
-
-    .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:center}
-    .portrait{display:block;place-self:center;width:100%;max-width:360px;aspect-ratio:1/1;border-radius:50%;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 12px 28px rgba(0,0,0,.45),0 0 0 8px rgba(0,212,255,.06)}
-    .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;filter:contrast(1.04) saturate(1.03)}
-    .about p{color:var(--muted)}
-
-    .pills{display:flex;gap:8px;flex-wrap:wrap}
-    .pill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--muted)}
-
-    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .testimonials .tcard{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:18px}
-    .testimonials .who{color:var(--muted);font-size:14px;margin-top:8px}
-
-    .faq{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    details{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px}
-    details summary{cursor:pointer;font-weight:800}
-    details p{color:var(--muted)}
-
-    .contact{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .contact .frame .ctas{display:flex;gap:12px;flex-wrap:wrap}
-    .contact .disclaimer{color:var(--muted);font-size:14px}
 
     .video-controls{
       position:absolute;
@@ -159,10 +272,230 @@
       box-shadow:none;
     }
 
-    /* Modo desempenho em telas pequenas: sombras mais leves */
-    @media (max-width: 480px){
-      :root{ --shadow: 0 4px 10px rgba(0,0,0,.2); }
-      .frame{ box-shadow: var(--shadow); }
+    .mini-banner{
+      padding:10px 12px;
+      font-weight:700;
+      color:var(--ink);
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg,rgba(0,212,255,.08),rgba(255,255,255,.02));
+      font-size:13px;
+    }
+
+    .trust-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+      align-items:center;
+    }
+
+    section{
+      padding:48px 0;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+    section h2{
+      font-size:30px;
+      margin:0 0 12px;
+    }
+    section p.section-sub{
+      margin:0 0 22px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+    .step{
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:16px;
+      font-size:14px;
+    }
+    .step .badge{
+      display:inline-block;
+      padding:4px 8px;
+      border-radius:999px;
+      background:rgba(0,212,255,.1);
+      border:1px solid rgba(0,212,255,.28);
+      color:var(--brand);
+      font-weight:800;
+      font-size:11px;
+    }
+    .step b{display:block;margin:8px 0 4px}
+    .step p{margin:0;color:var(--muted);font-size:13px;}
+
+    .plans{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+    .card{
+      position:relative;
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      font-size:14px;
+    }
+    .price{
+      font-size:26px;
+      font-weight:900;
+      color:var(--brand);
+    }
+    .price small{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:400;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(0,212,255,.1);
+      border:1px solid rgba(0,212,255,.25);
+      color:var(--brand);
+      font-weight:800;
+      font-size:12px;
+    }
+    .seal{
+      position:absolute;
+      top:14px;
+      right:14px;
+      background:linear-gradient(135deg,var(--brand),#4af3ff);
+      color:#001018;
+      font-weight:900;
+      padding:6px 10px;
+      border-radius:999px;
+      box-shadow:0 6px 16px rgba(0,212,255,.25);
+      font-size:12px;
+    }
+    .list{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    .list li{
+      display:flex;
+      gap:8px;
+      align-items:flex-start;
+      margin:6px 0;
+      color:var(--ink);
+      font-size:13px;
+    }
+    .list li small{color:var(--muted);font-size:12px;}
+
+    .about{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:24px;
+      align-items:center;
+    }
+    .portrait{
+      width:100%;
+      max-width:340px;
+      aspect-ratio:1/1;
+      border-radius:50%;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 12px 28px rgba(0,0,0,.45),0 0 0 8px rgba(0,212,255,.06);
+      margin:0 auto;
+    }
+    .portrait img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:50% 15%;
+      filter:contrast(1.04) saturate(1.03);
+      display:block;
+    }
+
+    .pills{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+
+    .testimonials{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+    .tcard{
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:16px;
+      font-size:14px;
+    }
+    .tcard .who{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:8px;
+    }
+
+    .faq{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:12px 14px;
+      font-size:14px;
+    }
+    details summary{
+      cursor:pointer;
+      font-weight:800;
+      list-style:none;
+    }
+    details summary::-webkit-details-marker{display:none}
+    details p{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .contact{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:22px 0 26px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .footgrid{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:18px;
+      align-items:flex-start;
+    }
+
+    .float-whatsapp{
+      position:fixed;
+      bottom:18px;
+      right:18px;
+      z-index:60;
+    }
+
+    /* Desempenho em telas pequenas */
+    @media (max-width:480px){
+      :root{--shadow:0 4px 10px rgba(0,0,0,.2);}
+      .frame{box-shadow:var(--shadow);}
     }
 
     @media (max-width:1024px){
@@ -174,8 +507,13 @@
       .testimonials{grid-template-columns:1fr}
       .contact{grid-template-columns:1fr}
     }
-  
-      @media (max-width:640px){
+
+    @media (max-width:640px){
+      .nav{flex-wrap:wrap}
+      nav{display:none;} /* Se quiser, depois transformamos em menu hambúrguer */
+      .hero h1{font-size:30px;line-height:1.15;}
+      .hero p.lead{font-size:16px;}
+      section h2{font-size:26px;}
       .video-controls{
         gap:4px;
         padding:4px;
@@ -196,51 +534,8 @@
         left:6px;
         font-size:12px;
       }
-      .hero h1{font-size:30px;line-height:1.15;}
-      .hero p.lead{font-size:16px;}
-      section h2{font-size:26px;}
-    }
-      .video-controls button{
-        padding:4px 6px;
-        min-width:24px;
-        min-height:24px;
-        font-size:10.5px;
-      }
-      .video .unmute-btn{
-        padding:10px 18px;
-        font-size:13px;
-        transform:translate(-50%,-50%) scale(.95);
-      }
-      .video-wa{
-        top:6px;
-        left:6px;
-        font-size:12px;
-      }
     }
   </style>
-<script>
-    // ===== GA4 opcional — preencha seu Measurement ID abaixo =====
-    window.GA_ID = 'G-M06M084R2N'; // GA4
-    window.AW_ID = 'AW-XXXXXXXXXX'; // Google Ads (ex.: AW-123456789)
-    window.AW_CONVERSION_LABEL = 'XXXXXXXXXXXX'; // Label da conversão (ex.: AbCdEfGhIjkLmNoP)
-  </script>
-  <script>
-    (function(){
-      var ga = window.GA_ID || '';
-      var aw = window.AW_ID || '';
-      if(ga && ga !== 'G-XXXXXXXXXX'){
-        var s1 = document.createElement('script'); s1.async = true; s1.src = 'https://www.googletagmanager.com/gtag/js?id='+ga; document.head.appendChild(s1);
-        var s2 = document.createElement('script'); s2.innerHTML = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '"+ga+"');"; document.head.appendChild(s2);
-        window.gtag = function(){ (window.dataLayer = window.dataLayer || []).push(arguments); };
-      } else {
-        // fallback mínimo caso só use Google Ads sem GA4
-        var s0 = document.createElement('script'); s0.async = true; s0.src = 'https://www.googletagmanager.com/gtag/js?id='+(aw||'AW-XXXXXXXXXX'); document.head.appendChild(s0);
-        window.dataLayer = window.dataLayer || []; window.gtag = function(){ dataLayer.push(arguments); };
-        gtag('js', new Date());
-      }
-      if(aw && aw !== 'AW-XXXXXXXXXX'){ gtag('config', aw); }
-    })();
-  </script>
 </head>
 <body>
   <header>
@@ -273,25 +568,42 @@
         <a href="#faq">Dúvidas</a>
         <a href="#contato">Fale comigo</a>
       </nav>
-      <a class="btn btn-primary wa" href="#" data-utm="nav" data-msg="Olá, Dr. Rafael. Quero orientação sobre divórcio online.">&#128172; WhatsApp</a>
+      <a class="btn btn-primary wa"
+         href="#"
+         data-utm="nav"
+         data-msg="Olá, Dr. Rafael, vi sua página de divórcio online e gostaria de tirar uma dúvida rápida.">
+        💬 WhatsApp
+      </a>
     </div>
   </header>
-  </div>
 
   <main id="inicio" class="hero">
     <div class="container hero-grid">
       <div>
-        <div class="highlight-badge">&#9889; Divórcio em cartório 100% online &mdash; com cartório incluso</div>
-        <h1>Divórcio Online <span style="color:var(--brand)">Rápido, Seguro</span> e sem burocracia</h1>
-        <p class="lead"><b>Você não precisa sair de casa</b>. Todo o procedimento acontece online: atendimento pelo WhatsApp, <b>videoconferência</b> com o cartório pelo e‑Notariado e <b>assinatura eletrônica</b>. Sem deslocamentos, sem o ex‑casal se encontrar e com um advogado experiente conduzindo tudo do início ao fim.</p>
+        <div class="highlight-badge">⚡ Divórcio em cartório 100% online — com cartório incluso</div>
+        <h1>Divórcio Online <span>rápido, seguro</span> e sem sair de casa</h1>
+        <p class="lead">
+          <b>Você não precisa ir ao fórum nem ao cartório.</b> Todo o procedimento acontece online:
+          atendimento pelo WhatsApp, <b>videoconferência</b> com o cartório pelo e-Notariado e
+          <b>assinatura eletrônica</b>. Sem deslocamentos, sem o ex-casal se encontrar e com um
+          advogado experiente conduzindo tudo do início ao fim.
+        </p>
         <div class="ctas">
-          <a class="btn btn-primary wa" href="#" data-utm="hero_primary" data-msg="Olá, Dr. Rafael. Quero fazer meu divórcio online.">&#128172; Falar no WhatsApp</a>
+          <a class="btn btn-primary wa"
+             href="#"
+             data-utm="hero_primary"
+             data-msg="Olá, Dr. Rafael, quero saber como funciona o divórcio online no meu caso.">
+            💬 Falar no WhatsApp
+          </a>
         </div>
-        <div class="trust" style="margin-top:16px">
-          <a href="#confianca">&#128274; Como verificar minha identidade</a>
-          <span class="pill">Atendimento: Seg&ndash;Sex, 09h&ndash;19h (resposta imediata)</span>
+        <div class="trust-row">
+          <a href="#confianca" style="text-decoration:none;color:var(--muted);font-size:13px">
+            🔒 Como verificar minha identidade na OAB
+          </a>
+          <span class="pill">Atendimento: Seg–Sex, 09h–19h (resposta em horário comercial)</span>
         </div>
       </div>
+
       <div class="hero-media">
         <div class="frame video" id="videoWrap">
           <video id="introVideo"
@@ -312,19 +624,28 @@
             <input id="seekBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Progresso do vídeo" />
             <button id="fsBtn" type="button" aria-label="Ampliar vídeo">⛶</button>
           </div>
-          <a href="#" class="video-wa wa"
+          <a href="#"
+             class="video-wa wa"
              data-utm="video_overlay"
-             data-msg="Olá, Rafael. Estou assistindo ao vídeo e quero começar meu divórcio online.">
+             data-msg="Olá, Dr. Rafael, estou assistindo ao vídeo e quero entender se posso fazer meu divórcio online também.">
             WhatsApp
           </a>
         </div>
         <div id="videoFallback" class="mini-banner frame" style="display:none;margin-top:8px">
-          ⚠️ Não foi possível carregar o vídeo agora. Clique em um dos botões de <b>WhatsApp</b> desta página para receber a explicação em vídeo diretamente no seu celular.
+          ⚠️ Não foi possível carregar o vídeo agora. Use um dos botões de <b>WhatsApp</b> desta página
+          e eu envio a explicação em vídeo diretamente para você.
         </div>
         <div class="ctas">
-          <a class="btn btn-primary wa" href="#" data-utm="hero_after_video" data-msg="Acabei de assistir ao vídeo e quero iniciar meu divórcio online.">💬 Falar no WhatsApp agora</a>
+          <a class="btn btn-primary wa"
+             href="#"
+             data-utm="hero_after_video"
+             data-msg="Olá, Dr. Rafael, acabei de ver seu vídeo e quero começar meu divórcio online.">
+            💬 Falar no WhatsApp agora
+          </a>
         </div>
-        <div class="mini-banner frame">✅ <b>Sem sair de casa</b> • 🔒 Verificação OAB <b>na triagem pelo WhatsApp</b> • ⏱️ Confirmação em menos de 1 minuto.</div>
+        <div class="mini-banner">
+          ✅ <b>Sem sair de casa</b> • 🔒 Verificação OAB <b>na triagem pelo WhatsApp</b> • ⏱️ Confirmação em menos de 1 minuto.
+        </div>
       </div>
     </div>
   </main>
@@ -332,92 +653,182 @@
   <section id="como-funciona">
     <div class="container">
       <h2>Como funciona</h2>
-      <p class="section-sub">Fluxo simples em 4 passos &mdash; você resolve tudo de casa, <b>sem encontros presenciais</b>.</p>
+      <p class="section-sub">
+        Fluxo simples em 4 passos — você resolve tudo de casa, <b>sem encontros presenciais</b>.
+      </p>
       <div class="steps">
-        <div class="step"><span class="badge">1</span> <b>Triagem</b><p>Conversa inicial por WhatsApp/vídeo para entender seu caso e definir o caminho: cartório (extrajudicial) ou judicial &mdash; tudo online, sem necessidade de encontros presenciais entre o ex-casal.</p></div>
-        <div class="step"><span class="badge">2</span> <b>Documentos</b><p>Checklist guiado. Preparamos a minuta ou a petição e orientamos cada passo, sem burocracia.</p></div>
-        <div class="step"><span class="badge">3</span> <b>Assinatura online</b><p>No cartório: videoconferência pelo e-Notariado e assinatura eletrônica. No judicial: protocolo eletrônico e acompanhamento integral.</p></div>
-        <div class="step"><span class="badge">4</span> <b>Concluído</b><p>Emissão da escritura (cartório) ou sentença/termo (judicial) e orientações finais (averbações/atualizações) &mdash; tudo sem saídas desnecessárias de casa.</p></div>
+        <div class="step">
+          <span class="badge">1</span>
+          <b>Triagem inicial</b>
+          <p>Conversa rápida por WhatsApp/vídeo para entender o seu caso e definir o caminho:
+            cartório (extrajudicial) ou judicial. Tudo online, sem necessidade de se encontrar com o ex-cônjuge.</p>
+        </div>
+        <div class="step">
+          <span class="badge">2</span>
+          <b>Documentos e estratégia</b>
+          <p>Checklist guiado de documentos. Eu preparo a minuta da escritura ou a petição inicial
+            eletrônica e explico a estratégia em linguagem simples.</p>
+        </div>
+        <div class="step">
+          <span class="badge">3</span>
+          <b>Assinatura online</b>
+          <p>No cartório: videoconferência com o tabelião pelo e-Notariado e assinatura digital.
+            No judicial: protocolo eletrônico e, se necessário, audiências virtuais preparadas comigo.</p>
+        </div>
+        <div class="step">
+          <span class="badge">4</span>
+          <b>Homologação e orientações finais</b>
+          <p>Emissão da escritura (cartório) ou sentença/termo (judicial) e orientação sobre averbações
+            e ajustes necessários — tudo acompanhado online pelo WhatsApp.</p>
+        </div>
       </div>
     </div>
   </section>
 
-    <section id="planos">
+  <section id="planos">
     <div class="container">
       <h2>Planos e valores</h2>
-      <p class="section-sub"><b>Valores fechados e competitivos<\/b>, dentro da realidade do mercado do RJ e respeitando as normas da OAB. Tudo é combinado antes de qualquer passo, com <b>pagamento online via Pix ou cartão de crédito<\/b> e contrato formal de honorários.<\/p>
+      <p class="section-sub">
+        <b>Valores fechados</b>, dentro da realidade do mercado do RJ e respeitando as normas da OAB.
+        Tudo é combinado antes de qualquer passo, com
+        <b>pagamento online via Pix ou cartão de crédito</b> e contrato formal de honorários.
+      </p>
+
       <div class="plans">
+        <!-- Cartório -->
         <article class="card">
           <div class="seal">Cartório Incluso</div>
           <span class="badge">Mais rápido</span>
-          <h3>Extrajudicial (cartório online)<\/h3>
+          <h3>Divórcio em Cartório Online (e-Notariado)</h3>
+          <div class="price">R$ 3.500,00 <small>(cartório incluso)</small></div>
           <ul class="list">
-            <li>✔️ <b>Para quem é:</b> casais sem filhos menores e sem gestante, com vontade de se divorciar em comum acordo.</li>
+            <li>✔️ <b>Para quem é:</b> casais sem filhos menores e sem gestante, em comum acordo.</li>
             <li>✔️ <b>Cartório incluso:</b> o valor já contempla as taxas do cartório para lavratura da escritura.</li>
-            <li>✔️ <b>100% online:</b> atendimento, conferência de documentos, videoconferência com o tabelião e assinatura eletrônica &mdash; você não sai de casa e o ex-casal não precisa se encontrar.</li>
-            <li>✔️ <b>Rapidez:</b> na maioria dos casos, a escritura fica pronta em até <b>1 dia útil</b> após todos os documentos estarem corretos.</li>
+            <li>✔️ <b>100% online:</b> atendimento, conferência de documentos, videoconferência com o tabelião e assinatura eletrônica —
+              você não sai de casa e o ex-casal não precisa se encontrar.</li>
+            <li>✔️ <b>Rapidez:</b> na maioria dos casos, a escritura fica pronta em até
+              <b>1 dia útil</b> após todos os documentos estarem corretos.</li>
           </ul>
           <div class="ctas">
-            <a class="btn btn-primary wa" href="#" data-utm="plan_cartorio" data-msg="Não tenho filhos menores e quero fazer meu divórcio em cartório, 100% online, com cartório incluso.">💬 Contratar via WhatsApp</a>
+            <a class="btn btn-primary wa"
+               href="#"
+               data-utm="plan_cartorio"
+               data-msg="Olá, Dr. Rafael, não tenho filhos menores e quero um orçamento para divórcio em cartório 100% online, com cartório incluso.">
+              💬 Contratar via WhatsApp
+            </a>
           </div>
+          <p style="font-size:12px;color:var(--muted);margin:4px 0 0;">
+            Mensagem sugerida: <b>“Não tenho filhos menores e quero fazer meu divórcio em cartório.”</b>
+          </p>
         </article>
 
+        <!-- Judicial consensual -->
         <article class="card">
           <span class="badge">Com filhos menores</span>
-          <h3>Judicial consensual (online)<\/h3>
+          <h3>Divórcio Judicial Consensual Online</h3>
+          <div class="price">R$ 2.000,00 <small>(honorários do advogado)</small></div>
           <ul class="list">
-            <li>✔️ <b>Para quem é:</b> casais que têm filhos menores ou gestante, mas estão em acordo sobre guarda, pensão e partilha.</li>
+            <li>✔️ <b>Para quem é:</b> casais com filhos menores ou gestante, em acordo sobre guarda, pensão e partilha.</li>
             <li>✔️ <b>Processo 100% digital:</b> petição inicial eletrônica com pedido de justiça gratuita sempre que houver perfil econômico.</li>
-            <li>✔️ <b>Justiça gratuita:</b> na prática, em cerca de <b>90%</b> dos casos com renda compatível o benefício é concedido, e o cliente não paga custas, apenas honorários. (*Sempre sujeito à análise do juiz e à comprovação de hipossuficiência*).</li>
-            <li>✔️ <b>Audiência online:</b> se o juiz marcar audiência, ela acontece por videoconferência, com preparação prévia.</li>
-            <li>✔️ <b>Acompanhamento total:</b> sigo com você até a homologação do divórcio e oriento as etapas finais (averbação, atualizações, etc.).</li>
+            <li>✔️ <b>Justiça gratuita:</b> na prática, em grande parte dos casos com renda compatível,
+              o cliente não paga custas judiciais, arcando apenas com os honorários.
+              <small>(Sempre sujeito à análise do juiz e à comprovação de hipossuficiência.)</small></li>
+            <li>✔️ <b>Audiência online:</b> se o juiz marcar audiência, ela acontece por videoconferência, com preparação prévia comigo.</li>
+            <li>✔️ <b>Acompanhamento total:</b> sigo com você até a homologação do divórcio e oriento as etapas finais.</li>
           </ul>
           <div class="ctas">
-            <a class="btn btn-primary wa" href="#" data-utm="plan_consensual" data-msg="Temos filhos menores/gestante e queremos fazer divórcio consensual online, com pedido de justiça gratuita.">💬 Falar agora</a>
+            <a class="btn btn-primary wa"
+               href="#"
+               data-utm="plan_consensual"
+               data-msg="Olá, Dr. Rafael, temos filhos menores ou gestante e queremos um divórcio consensual online, com pedido de justiça gratuita.">
+              💬 Falar agora
+            </a>
           </div>
+          <p style="font-size:12px;color:var(--muted);margin:4px 0 0;">
+            Mensagem sugerida: <b>“Temos filhos menores e queremos um divórcio amigável online.”</b>
+          </p>
         </article>
 
+        <!-- Judicial litigioso -->
         <article class="card">
           <span class="badge">Quando não há acordo</span>
-          <h3>Judicial litigioso (online)<\/h3>
+          <h3>Divórcio Judicial Litigioso Online</h3>
+          <div class="price">R$ 2.800,00 <small>(honorários do advogado)</small></div>
           <ul class="list">
             <li>✔️ <b>Para quem é:</b> situações em que não há acordo sobre guarda, pensão, partilha de bens ou outros pontos sensíveis.</li>
             <li>✔️ <b>Atuação estratégica:</b> ingresso e condução do processo eletrônico, com definição de estratégia desde o início.</li>
-            <li>✔️ <b>Busca de acordo:</b> quando há espaço, trabalho para construir um acordo vantajoso e reduzir desgaste emocional e financeiro.</li>
-            <li>✔️ <b>Transparência:</b> explico cada fase, prazo e possível custo adicional com linguagem simples e direta.</li>
-            <li><small>Honorários adicionais podem ser combinados em casos de maior complexidade, necessidade de recursos ou incidentes processuais específicos.<\/small><\/li>
+            <li>✔️ <b>Busca de acordo:</b> quando houver espaço, trabalho para construir um acordo vantajoso e reduzir desgaste emocional e financeiro.</li>
+            <li>✔️ <b>Transparência:</b> explico cada fase, prazo e possíveis custos adicionais com linguagem simples e direta.</li>
+            <li><small>Honorários adicionais podem ser combinados em casos de maior complexidade
+              (recursos, incidentes processuais, perícias, etc.).</small></li>
           </ul>
           <div class="ctas">
-            <a class="btn btn-primary wa" href="#" data-utm="plan_litigioso" data-msg="Não há acordo. Quero orientação para divórcio litigioso online e verificar sua identidade agora.">💬 Começar avaliação</a>
+            <a class="btn btn-primary wa"
+               href="#"
+               data-utm="plan_litigioso"
+               data-msg="Olá, Dr. Rafael, não há acordo e preciso de orientação sobre divórcio litigioso online.">
+              💬 Começar avaliação
+            </a>
           </div>
+          <p style="font-size:12px;color:var(--muted);margin:4px 0 0;">
+            Mensagem sugerida: <b>“Quero me divorciar e não há acordo, preciso entender o litigioso.”</b>
+          </p>
         </article>
       </div>
-      <p class="section-sub" style="margin-top:10px">&#128179; <b>Pagamento à vista via Pix, com 15% de desconto</b>, ou no <b>cartão de crédito em até 12x sem juros para você</b>, por meio de plataforma de pagamento online segura. O parcelamento é exclusivo no cartão. O link ou a chave Pix são enviados após alinharmos o seu caso e antes de iniciarmos o procedimento, para que tudo fique claro, formalizado e sem surpresas.<\/p>
+
+      <p class="section-sub" style="margin-top:10px">
+        💳 <b>Pagamento à vista via Pix, com 15% de desconto</b>,
+        ou no <b>cartão de crédito em até 12x sem juros para você</b>,
+        por meio de plataforma de pagamento online segura.
+        O parcelamento é exclusivo no cartão.
+        O link ou a chave Pix são enviados após alinharmos o seu caso
+        e antes de iniciarmos o procedimento, para que tudo fique claro,
+        formalizado e sem surpresas.
+      </p>
     </div>
   </section>
 
   <section id="confianca">
     <div class="container about">
       <div class="portrait">
-        <img id="portrait-img" src="eu.jpg" alt="Rafael Toledo — Advogado de Divórcios (OAB/RJ 227191)" decoding="async" loading="eager" />
-        <div style="text-align:center;margin-top:10px">
-          <button class="btn btn-outline" type="button" id="pick-photo">&#128247; Carregar minha foto agora</button>
-          <input type="file" id="photo-input" accept="image/*" style="display:none" />
-        </div>
+        <img src="eu.jpg" alt="Rafael Toledo — Advogado de Divórcios (OAB/RJ 227191)" loading="eager" decoding="async">
       </div>
       <div>
         <h2>Quem vai cuidar do seu caso</h2>
-        <p>Sou <b>Rafael Toledo da Silva Duarte</b> (OAB/RJ 227191), advogado com <b>+5 anos</b> de atuação em Direito de Família, com foco em divórcios online. Meu compromisso é unir <b>agilidade</b>, <b>segurança jurídica</b> e <b>atendimento humano</b> para que você vire a página com tranquilidade.</p>
-        <div class="trust" style="margin:14px 0 10px">
-          <span class="pill">Verificação OAB pelo WhatsApp</span>
-          <span class="pill">Consulta CNA/OAB na triagem</span>
+        <p class="section-sub">
+          Sou <b>Rafael Toledo da Silva Duarte</b> (OAB/RJ 227191), advogado com
+          <b>+5 anos</b> de atuação em Direito de Família, com foco em divórcios online.
+          Meu compromisso é unir <b>agilidade</b>, <b>segurança jurídica</b> e
+          <b>atendimento humano</b> para que você vire a página com tranquilidade.
+        </p>
+        <div class="pills" style="margin-bottom:8px">
+          <span class="pill">Verificação OAB pela triagem no WhatsApp</span>
+          <span class="pill">Consulta CNA/OAB guiada por mim</span>
         </div>
-        <p class="section-sub" style="margin-top:6px">Posso <b>comprovar minha identidade</b> em <b>menos de 1 minuto</b> por <b>mensagem no WhatsApp</b> usando o ConfirmAdv (OAB) e a consulta no CNA/OAB. Tudo <b>sem você sair desta página</b>. Durante a triagem, eu te conduzo passo a passo para máxima segurança e transparência.</p>
-        <div class="ctas" style="margin:8px 0 10px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn btn-primary wa" href="#" data-utm="trust_verify" data-msg="Olá, quero verificar sua identidade pelo ConfirmAdv agora.">&#128274; Verificar pelo WhatsApp (recomendado)</a>
-          <button class="btn btn-outline" type="button" id="copy-oab-btn">&#128203; Copiar meus dados OAB</button>
+        <p class="section-sub">
+          Durante a triagem pelo WhatsApp, posso <b>comprovar minha identidade</b> em
+          <b>menos de 1 minuto</b> usando sistemas oficiais da OAB, como o ConfirmAdv,
+          e te ensinando a consultar meu registro no <b>CNA/OAB</b> pelo nome completo
+          e número da OAB/RJ 227191 — tudo sem você sair desta página.
+        </p>
+        <div class="ctas" style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 8px">
+          <a class="btn btn-primary wa"
+             href="#"
+             data-utm="trust_verify"
+             data-msg="Olá, Dr. Rafael, quero confirmar seus dados na OAB pelo ConfirmAdv e CNA antes de seguir com o divórcio.">
+            🔒 Verificar pelo WhatsApp (recomendado)
+          </a>
+          <button class="btn btn-outline" type="button" id="copy-oab-btn">
+            📋 Copiar meus dados OAB
+          </button>
         </div>
-        <p class="section-sub" style="margin-top:8px">Atendo <b>todo o RJ 100% online</b>, com foco em <b>Queimados</b>, <b>Nova Iguaçu</b>, <b>São João de Meriti</b>, <b>Duque de Caxias</b>, <b>Belford Roxo</b>, <b>Mesquita</b> e <b>Nilópolis</b>. Você resolve tudo de casa, sem encontros presenciais com o ex-cônjuge e com acompanhamento jurídico em todas as etapas.</p>
+        <p class="section-sub">
+          Atendo <b>todo o Estado do RJ 100% online</b>, com foco em
+          <b>Queimados</b>, <b>Nova Iguaçu</b>, <b>São João de Meriti</b>,
+          <b>Duque de Caxias</b>, <b>Belford Roxo</b>, <b>Mesquita</b> e <b>Nilópolis</b>.
+          Você resolve tudo de casa, sem encontros presenciais com o ex-cônjuge e com
+          acompanhamento jurídico em todas as etapas.
+        </p>
         <div class="pills">
           <span class="pill">Queimados</span>
           <span class="pill">Nova Iguaçu</span>
@@ -458,27 +869,40 @@
       <div class="faq">
         <details>
           <summary>O divórcio em cartório é realmente 100% online?</summary>
-          <p>Sim. O procedimento é feito por videoconferência e assinatura eletrônica pelo e-Notariado. A escritura tem a mesma validade que a presencial.</p>
+          <p>Sim. O procedimento é feito por videoconferência e assinatura eletrônica pelo e-Notariado.
+            A escritura tem a mesma validade que a presencial.</p>
         </details>
         <details>
           <summary>Quando preciso fazer o judicial em vez do cartório?</summary>
-          <p>Se há filhos menores/gestante ou se não há consenso. No consensual, o trâmite é eletrônico; no litigioso, conduzimos todas as fases e buscamos acordo quando possível.</p>
+          <p>Quando há filhos menores/gestante ou quando não há consenso. No consensual, o trâmite é
+            eletrônico; no litigioso, conduzimos todas as fases e buscamos acordo quando possível.</p>
         </details>
         <details>
-          <summary>Quanto tempo leva?</summary>
-          <p>No cartório, pode ser concluído em ~1 dia útil após documentos e videoconferência. No judicial consensual, costuma levar de 1 a 3 meses; litigiosos variam conforme o caso.</p>
+          <summary>Quanto tempo leva, em média?</summary>
+          <p>No cartório, pode ser concluído em cerca de 1 dia útil após documentos e videoconferência.
+            No judicial consensual, costuma levar de 1 a 3 meses. Litigiosos variam conforme o caso
+            e a vara, mas sempre explico o cenário provável antes de iniciar.</p>
         </details>
         <details>
           <summary>Quais documentos vou precisar?</summary>
-          <p>Checklist simples: documentos pessoais, certidão de casamento atualizada, informações sobre bens/filhos. Eu preparo a minuta/petição e te guio em cada etapa.</p>
+          <p>Checklist simples: documentos pessoais, certidão de casamento atualizada, informações
+            sobre bens e, se houver, filhos. Eu preparo a minuta/petição e te guio em cada etapa.</p>
         </details>
         <details>
-          <summary>Posso parcelar os honorários?<\/summary>
-          <p>Sim. Você pode pagar <b>à vista no Pix, com 15% de desconto</b>, ou parcelar no <b>cartão de crédito em até 12x sem juros</b>. O parcelamento é exclusivo no cartão. Antes de qualquer cobrança, alinhamos o valor, emitimos contrato de honorários e só então você recebe o link ou a chave para pagamento online.<\/p>
+          <summary>Posso parcelar os honorários?</summary>
+          <p>
+            Sim. Você pode pagar <b>à vista no Pix, com 15% de desconto</b>,
+            ou parcelar no <b>cartão de crédito em até 12x sem juros</b>.
+            O parcelamento é exclusivo no cartão.
+            Antes de qualquer cobrança, alinhamos o valor, emitimos contrato de honorários
+            e só então você recebe o link ou a chave para pagamento online.
+          </p>
         </details>
         <details>
           <summary>Como tenho certeza de que estou falando com o advogado certo?</summary>
-          <p>Usamos o <b>ConfirmAdv</b> (OAB). Durante a triagem, você insere meu número e e-mail e eu confirmo minha identidade em minutos. Você também pode me buscar no <b>CNA</b> da OAB.</p>
+          <p>Durante a triagem, uso sistemas oficiais da OAB (como ConfirmAdv) e te ensino a consultar
+            meu registro no CNA/OAB. Assim, você confirma meus dados por nome completo e OAB/RJ 227191,
+            com total transparência.</p>
         </details>
       </div>
     </div>
@@ -488,16 +912,28 @@
     <div class="container contact">
       <div class="frame" style="padding:18px">
         <h2>Fale comigo agora</h2>
-        <p class="section-sub"><b>100% online</b> pelo WhatsApp. Resposta imediata em horário comercial. Você resolve <b>sem sair de casa</b>.</p>
-        <div class="ctas" style="margin:10px 0 18px">
-          <a class="btn btn-primary wa" href="#" data-utm="contact_main" data-msg="Olá, Dr. Rafael. Quero orientação sobre meu divórcio.">💬 WhatsApp (resposta rápida)</a>
+        <p class="section-sub">
+          <b>Atendimento 100% online</b> pelo WhatsApp. Resposta em horário comercial.
+          Você resolve <b>sem sair de casa</b>, com orientação jurídica em cada passo.
+        </p>
+        <div class="ctas" style="margin:10px 0 18px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-primary wa"
+             href="#"
+             data-utm="contact_main"
+             data-msg="Olá, Dr. Rafael, quero atendimento sobre meu divórcio online.">
+            💬 WhatsApp (resposta rápida)
+          </a>
           <span class="badge">Verificação OAB na triagem</span>
         </div>
-        <div class="mini-banner frame" style="margin-top:8px">🔎 <b>Transparência:</b> <b>Verificação OAB pela triagem, chamando no WhatsApp</b> (ConfirmAdv + CNA/OAB). A página da LP permanece aberta para você consultar qualquer informação.</div>
+        <div class="mini-banner">
+          🔎 <b>Transparência:</b> <b>Verificação OAB pela triagem, chamando no WhatsApp</b>
+          (ConfirmAdv + CNA/OAB). A página permanece aberta para você consultar as informações
+          sempre que precisar.
+        </div>
       </div>
       <div class="frame" style="padding:18px">
         <h2>Cobertura e horários</h2>
-        <p class="section-sub">Atendo todo o RJ online. Foco em:</p>
+        <p class="section-sub">Atendo todo o Estado do RJ de forma online. Foco em:</p>
         <div class="pills">
           <span class="pill">Queimados</span>
           <span class="pill">Nova Iguaçu</span>
@@ -507,7 +943,10 @@
           <span class="pill">Mesquita</span>
           <span class="pill">Nilópolis</span>
         </div>
-        <p class="section-sub" style="margin-top:14px">Atendimento: <b>Seg&ndash;Sex, 09h&ndash;19h<\/b>, totalmente online, por WhatsApp e videoconferência. Não é necessário encontro presencial com o ex-cônjuge.</p>
+        <p class="section-sub" style="margin-top:14px">
+          Atendimento: <b>Seg–Sex, 09h–19h</b>, totalmente online, por WhatsApp e videoconferência.
+          Não é necessário encontro presencial com o ex-cônjuge.
+        </p>
       </div>
     </div>
   </section>
@@ -515,7 +954,7 @@
   <footer>
     <div class="container footgrid">
       <div>
-        <div style="display:flex;align-items:center;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
           <div class="brand-logo small" aria-label="Logo Rafael Toledo">
             <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
               <defs>
@@ -529,25 +968,42 @@
               <text x="50%" y="56%" text-anchor="middle" font-size="28" font-weight="900" font-family="Inter,system-ui,Arial,sans-serif" fill="#001018">RT</text>
             </svg>
           </div>
-          <div style="font-weight:800">Rafael Toledo da Silva Duarte — OAB/RJ 227191</div>
+          <div>
+            <div style="font-weight:800">Rafael Toledo da Silva Duarte — OAB/RJ 227191</div>
+            <div>Divórcios Online • Direito de Família</div>
+          </div>
         </div>
-        <div>Divórcios Online • Direito de Família</div>
-        <div>WhatsApp: <a class="wa" href="#" data-utm="footer" data-msg="Olá, Dr. Rafael.">(21) 99692-1402</a></div>
-        <div style="margin-top:8px;color:var(--muted);font-size:14px">Este site observa o Código de Ética e Disciplina da OAB. Informações meramente ilustrativas; honorários poderão ser ajustados conforme especificidades do caso, sempre com contrato formal.</div>
+        <div>WhatsApp:
+          <a class="wa"
+             href="#"
+             data-utm="footer"
+             data-msg="Olá, Dr. Rafael, vi seu contato no site e gostaria de entender melhor sobre o divórcio online.">
+            (21) 99692-1402
+          </a>
+        </div>
+        <div style="margin-top:8px;">
+          Este site observa o Código de Ética e Disciplina da OAB. Informações meramente ilustrativas;
+          honorários podem ser ajustados conforme as especificidades do caso, sempre com contrato formal.
+        </div>
       </div>
       <div>
-        <div style="font-weight:800;margin-bottom:8px">Verificação</div>
+        <div style="font-weight:800;margin-bottom:6px">Verificação</div>
         <div>✔️ <b>Verificação OAB pela triagem, chamando no WhatsApp</b> (ConfirmAdv + consulta CNA/OAB).</div>
       </div>
     </div>
   </footer>
 
   <div class="float-whatsapp">
-    <a class="btn btn-primary wa" href="#" data-utm="floating" data-msg="Olá, Dr. Rafael.">&#128172; WhatsApp</a>
+    <a class="btn btn-primary wa"
+       href="#"
+       data-utm="floating"
+       data-msg="Olá, Dr. Rafael, preciso falar sobre divórcio online.">
+      💬 WhatsApp
+    </a>
   </div>
 
   <script>
-    // Abre WhatsApp em nova aba; se bloqueado, navega na mesma aba.
+    // Monta URL do WhatsApp com UTM e mensagem
     function waUrl(msg, utm){
       var qs = new URLSearchParams({
         phone: '5521996921402',
@@ -559,25 +1015,29 @@
       });
       return 'https://api.whatsapp.com/send?' + qs.toString();
     }
+
     function openWA(msg, utm){
       var baseMsg = msg || 'Olá, Dr. Rafael.';
       var extra = '\n\n[Origem: anúncio Google · posição: ' + (utm || 'na') + ']';
-      // Anexa gclid/wbraid/gbraid para futuras conversões offline
+
+      // Anexa gclid / wbraid / gbraid se existirem
       try{
         var raw = localStorage.getItem('ad_attrib');
         if(raw){
           var data = JSON.parse(raw);
           var parts = [];
-          if(data.gclid){ parts.push('gclid: ' + data.gclid); }
-          if(data.wbraid){ parts.push('wbraid: ' + data.wbraid); }
-          if(data.gbraid){ parts.push('gbraid: ' + data.gbraid); }
+          if(data.gclid) parts.push('gclid: ' + data.gclid);
+          if(data.wbraid) parts.push('wbraid: ' + data.wbraid);
+          if(data.gbraid) parts.push('gbraid: ' + data.gbraid);
           if(parts.length){
             extra += '\n[Dados do anúncio: ' + parts.join(' · ') + ']';
           }
         }
       }catch(e){}
+
       var finalMsg = baseMsg + extra;
       var url = waUrl(finalMsg, utm);
+
       try{
         var win = window.open(url, '_blank', 'noopener');
         if(!win){ location.href = url; }
@@ -586,31 +1046,11 @@
       }
       return false;
     }
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
 
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
-
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
-
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
-
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
-
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
-
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
-
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)  }
-
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
-
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
-
-    // Copiar OAB com fallback (Clipboard API → execCommand → prompt)
+    // Copia texto com fallback (clipboard → execCommand → prompt)
     async function copyTextSafe(text){
       try{
-        if (window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText){
+        if(window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText){
           await navigator.clipboard.writeText(text);
           alert('Dados copiados! Cole no ConfirmAdv/CNA quando quiser.');
           return true;
@@ -618,31 +1058,52 @@
       }catch(err){}
       try{
         var ta = document.createElement('textarea');
-        ta.value = text; ta.setAttribute('readonly','');
-        ta.style.position = 'fixed'; ta.style.top = '-1000px';
-        document.body.appendChild(ta); ta.focus(); ta.select();
-        var ok = document.execCommand('copy'); document.body.removeChild(ta);
-        if(ok){ alert('Dados copiados! Cole no ConfirmAdv/CNA quando quiser.'); return true; }
+        ta.value = text;
+        ta.setAttribute('readonly','');
+        ta.style.position='fixed';
+        ta.style.top='-1000px';
+        document.body.appendChild(ta);
+        ta.focus(); ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if(ok){
+          alert('Dados copiados! Cole no ConfirmAdv/CNA quando quiser.');
+          return true;
+        }
       }catch(e){}
       window.prompt('Copie os dados com CTRL+C / ⌘C e depois ENTER:', text);
       return false;
     }
 
     document.addEventListener('DOMContentLoaded', function(){
-      // Delegação de cliques para todos os links .wa
+      // Delegação de cliques para TODOS os links .wa
       document.body.addEventListener('click', function(e){
         var a = e.target.closest('a.wa');
         if(!a) return;
         e.preventDefault();
         var msg = a.getAttribute('data-msg') || 'Olá, Dr. Rafael.';
         var utm = a.getAttribute('data-utm') || 'na';
-        // GA4: evento de conversão
-        try{ if(window.gtag){ gtag('event','whatsapp_click',{event_category:'engagement', event_label: msg, utm_content: utm}); } }catch(err){}
+
+        // GA4: evento de clique em WhatsApp
+        try{
+          if(window.gtag){
+            gtag('event','whatsapp_click',{
+              event_category:'engagement',
+              event_label: utm,
+              value:1
+            });
+          }
+        }catch(err){}
+
         // Google Ads: conversão (se configurado)
         try{
-          if(window.gtag && window.AW_ID && window.AW_ID !== 'AW-XXXXXXXXXX' && window.AW_CONVERSION_LABEL && window.AW_CONVERSION_LABEL !== 'XXXXXXXXXXXX'){
-            gtag('event', 'conversion', { 'send_to': window.AW_ID + '/' + window.AW_CONVERSION_LABEL, 'event_callback': function(){ openWA(msg, utm); } });
-            // Se o navegador bloquear callback, abrimos mesmo assim após 800ms
+          if(window.gtag &&
+             window.AW_ID && window.AW_ID !== 'AW-XXXXXXXXXX' &&
+             window.AW_CONVERSION_LABEL && window.AW_CONVERSION_LABEL !== 'XXXXXXXXXXXX'){
+            gtag('event','conversion',{
+              send_to: window.AW_ID + '/' + window.AW_CONVERSION_LABEL,
+              event_callback: function(){ openWA(msg, utm); }
+            });
             setTimeout(function(){ openWA(msg, utm); }, 800);
             return;
           }
@@ -650,6 +1111,7 @@
         openWA(msg, utm);
       }, {passive:false});
 
+      // Botão copiar OAB
       var btn = document.getElementById('copy-oab-btn');
       if(btn){
         btn.addEventListener('click', function(ev){
@@ -659,59 +1121,70 @@
         }, {passive:false});
       }
 
-      // Scroll suave extra: link "Como verificar minha identidade" -> seção #confianca
+      // Scroll suave para "Como verificar minha identidade"
       var trustLink = document.querySelector('a[href="#confianca"]');
       if(trustLink){
-        trustLink.addEventListener('click', function(e){ e.preventDefault(); document.querySelector('#confianca').scrollIntoView({behavior:'smooth', block:'start'}); });
+        trustLink.addEventListener('click', function(e){
+          e.preventDefault();
+          document.querySelector('#confianca').scrollIntoView({behavior:'smooth', block:'start'});
+        });
       }
 
-      // Captura GCLID/WBRAID/GBRAID para futuras Conversões Offline
+      // Captura GCLID/WBRAID/GBRAID para conversões offline
       (function(){
         try{
           var p = new URLSearchParams(location.search);
-          var gclid = p.get('gclid'); var wbraid = p.get('wbraid'); var gbraid = p.get('gbraid');
+          var gclid = p.get('gclid');
+          var wbraid = p.get('wbraid');
+          var gbraid = p.get('gbraid');
           if(gclid || wbraid || gbraid){
-            var data = { gclid:gclid||'', wbraid:wbraid||'', gbraid:gbraid||'', ts: Date.now(), ref: document.referrer||'' };
+            var data = {
+              gclid: gclid || '',
+              wbraid: wbraid || '',
+              gbraid: gbraid || '',
+              ts: Date.now(),
+              ref: document.referrer || ''
+            };
             localStorage.setItem('ad_attrib', JSON.stringify(data));
           }
         }catch(e){}
       })();
     });
-  </script>
 
-  <script>
-    // Controles completos do vídeo (play/pause, reinício, ±10s, seek, fullscreen)
+    // Controles do vídeo: play/pause, reinício, ±10s, seek e fullscreen
     (function(){
-      var v=document.getElementById('introVideo');
-      var b=document.getElementById('unmuteBtn');
-      var wrap=document.getElementById('videoWrap');
-      var playBtn=document.getElementById('playPauseBtn');
-      var restartBtn=document.getElementById('restartBtn');
-      var back10Btn=document.getElementById('back10Btn');
-      var fwd10Btn=document.getElementById('fwd10Btn');
-      var seek=document.getElementById('seekBar');
-      var fsBtn=document.getElementById('fsBtn');
-      var fallback=document.getElementById('videoFallback');
+      var v   = document.getElementById('introVideo');
+      var b   = document.getElementById('unmuteBtn');
+      var wrap= document.getElementById('videoWrap');
+      var playBtn    = document.getElementById('playPauseBtn');
+      var restartBtn = document.getElementById('restartBtn');
+      var back10Btn  = document.getElementById('back10Btn');
+      var fwd10Btn   = document.getElementById('fwd10Btn');
+      var seek       = document.getElementById('seekBar');
+      var fsBtn      = document.getElementById('fsBtn');
+      var fallback   = document.getElementById('videoFallback');
+
+      if(!v) return;
 
       function sync(){
-        if(!v) return;
-        if(seek && v.duration){
-          seek.value = (v.currentTime / v.duration) * 100;
-        }
-        if(playBtn){
-          var paused = v.paused;
-          playBtn.textContent = paused ? '▶️' : '⏸️';
-          playBtn.setAttribute('aria-label', paused ? 'Reproduzir vídeo' : 'Pausar vídeo');
-        }
-        if(fsBtn){
-          var fs = !!document.fullscreenElement;
-          fsBtn.textContent = fs ? '🞬' : '⛶';
-          fsBtn.setAttribute('aria-label', fs ? 'Fechar vídeo ampliado' : 'Ampliar vídeo');
-        }
+        try{
+          if(seek && v.duration){
+            seek.value = (v.currentTime / v.duration) * 100;
+          }
+          if(playBtn){
+            var paused = v.paused;
+            playBtn.textContent = paused ? '▶️' : '⏸️';
+            playBtn.setAttribute('aria-label', paused ? 'Reproduzir vídeo' : 'Pausar vídeo');
+          }
+          if(fsBtn){
+            var fs = !!document.fullscreenElement;
+            fsBtn.textContent = fs ? '🞬' : '⛶';
+            fsBtn.setAttribute('aria-label', fs ? 'Fechar vídeo ampliado' : 'Ampliar vídeo');
+          }
+        }catch(e){}
       }
 
       function seekBy(sec){
-        if(!v) return;
         try{
           var t = v.currentTime + sec;
           if(v.duration){
@@ -722,9 +1195,7 @@
         }catch(e){}
       }
 
-      if(!v) return;
-
-      // tentar autoplay em mudo
+      // Tentativa de autoplay silencioso
       try{
         v.muted = true;
         var p = v.play();
@@ -738,6 +1209,7 @@
         seek.addEventListener('input', function(){
           if(v.duration){
             v.currentTime = (seek.value/100) * v.duration;
+            sync();
           }
         });
       }
@@ -779,9 +1251,39 @@
 
       if(fsBtn && wrap){
         fsBtn.addEventListener('click', function(){
-          if(document.fullscreenElement){
-            if(document.exitFullscreen) document.exitFullscreen();
-          }else{
-            if(wrap.requestFullscreen) wrap.requestFullscreen();
-          }
+          try{
+            if(document.fullscreenElement){
+              if(document.exitFullscreen) document.exitFullscreen();
+            }else{
+              if(wrap.requestFullscreen) wrap.requestFullscreen();
+            }
+          }catch(e){}
           setTimeout(sync, 200);
+        });
+        document.addEventListener('fullscreenchange', sync);
+      }
+
+      // Pausa o vídeo se sair totalmente da tela (exceto fullscreen)
+      try{
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(!e.isIntersecting && !document.fullscreenElement){
+              v.pause();
+              sync();
+            }
+          });
+        }, {threshold:0.25});
+        io.observe(v);
+      }catch(e){}
+
+      v.onerror = function(){
+        if(fallback) fallback.style.display = 'block';
+      };
+      v.onplay = sync;
+      v.onpause = sync;
+
+      sync();
+    })();
+  </script>
+</body>
+</html>
