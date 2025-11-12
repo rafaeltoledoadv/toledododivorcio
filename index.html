@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <!-- PRIVACIDADE: bloqueio de indexação -->
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="googlebot" content="noindex,nofollow,noarchive">
   <title>Divórcio Online | Rafael Toledo – OAB/RJ 227191</title>
   <meta name="description" content="Divórcio online rápido e seguro no RJ e Baixada. Escritura em cartório 100% digital (e-Notariado). Rafael Toledo, OAB/RJ 227191. WhatsApp: (21) 99692-1402." />
   <link rel="preconnect" href="https://api.whatsapp.com" crossorigin>
@@ -96,6 +100,17 @@
       .testimonials{grid-template-columns:1fr}
       .contact{grid-template-columns:1fr}
     }
+  .video-controls{position:absolute;left:12px;bottom:12px;display:flex;gap:8px;flex-wrap:wrap;background:rgba(0,0,0,.35);backdrop-filter:saturate(140%) blur(4px);padding:8px;border-radius:999px;border:1px solid rgba(255,255,255,.15);z-index:3}
+    .video-controls button{background:rgba(255,255,255,.95);color:#001018;border:none;border-radius:12px;font-weight:800;padding:12px 14px;cursor:pointer;min-width:46px;min-height:42px}
+    .video-controls input[type=range]{flex:1;accent-color:var(--brand);height:8px}
+    .video-controls button:hover{background:rgba(255,255,255,.08)}
+    .video-wa{position:absolute;right:12px;bottom:12px;z-index:3;padding:10px 12px;border-radius:999px}
+    @media (max-width:640px){.video-controls{left:8px;right:8px;gap:6px;padding:6px}.video-wa{right:8px;bottom:8px;padding:8px 10px}}
+  .video-controls{position:absolute;left:12px;right:12px;bottom:12px;display:flex;gap:8px;align-items:center;background:rgba(0,0,0,.4);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:8px;z-index:3}
+    .video-controls button{background:rgba(255,255,255,.9);color:#001018;border:none;border-radius:10px;font-weight:800;padding:8px 10px;cursor:pointer}
+    .video-controls input[type=range]{flex:1;accent-color:var(--brand)}
+    .video-wa{position:absolute;left:12px;top:12px;z-index:3;padding:8px 12px;border-radius:999px}
+    @media (max-width:640px){.video-controls{gap:6px;padding:6px}.video-wa{top:10px;left:10px}}
   </style>
 
   <script>
@@ -119,6 +134,8 @@
       if(aw && aw !== 'AW-XXXXXXXXXX'){ gtag('config', aw); }
     })();
   </script>
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="googlebot" content="noindex,nofollow,noarchive" />
 </head>
 <body>
   <header>
@@ -149,10 +166,18 @@
         </div>
       </div>
       <div class="hero-media">
-        <div class="frame video">
+        <div class="frame video" id="videoWrap">
           <video id="introVideo" src="video-marketing.mp4" playsinline muted autoplay preload="metadata" controlslist="nodownload noplaybackrate" aria-label="Vídeo explicativo sobre divórcio online"></video>
-          <button id="unmuteBtn" class="unmute-btn" aria-label="Ativar som">🔊 Ativar som</button>
-          <button id="togglePlay" class="unmute-btn" style="bottom:14px; top:auto; left:auto; right:14px; transform:none; padding:10px 14px" aria-label="Pausar vídeo">⏸️ Pausar</button>
+          <a class="btn btn-primary wa video-wa" href="#" data-utm="video_overlay" data-msg="Acabei de ver o vídeo e quero começar meu divórcio online.">💬 WhatsApp enquanto assisto</a>
+          <button id="unmuteBtn" class="unmute-btn" aria-label="Ativar som" style="z-index:3">🔊 Ativar som</button>
+          <div class="video-controls" role="group" aria-label="Controles do vídeo">
+            <button id="restartBtn" aria-label="Reiniciar vídeo">⟲ Reiniciar</button>
+            <button id="back10Btn" aria-label="Voltar 10 segundos">⏪ 10s</button>
+            <button id="playPauseBtn" aria-label="Pausar vídeo">⏸️ Pausar</button>
+            <button id="fwd10Btn" aria-label="Avançar 10 segundos">⏩ 10s</button>
+            <input id="seekBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Progresso do vídeo" />
+            <button id="fsBtn" aria-label="Ampliar vídeo">⛶ Ampliar</button>
+          </div>
         </div>
         <div id="videoFallback" class="mini-banner frame" style="display:none;margin-top:8px">⚠️ Não foi possível carregar o vídeo. Siga com o atendimento pelo WhatsApp que envio o vídeo por lá.</div>
         <div class="mini-banner frame">✅ <b>Sem sair de casa</b> • 🔒 Verificação OAB <b>na triagem pelo WhatsApp</b> • ⏱️ Confirmação em menos de 1 minuto.</div>✅ <b>Sem sair de casa</b> • 🔒 Verificação OAB <b>na triagem pelo WhatsApp</b> • ⏱️ Confirmação em menos de 1 minuto.</div>
@@ -335,20 +360,34 @@
         openWA(msg, utm);
       }, {passive:false});
 
-      // Vídeo: controles de áudio e play/pause
+      // Vídeo: controles de áudio, seek e fullscreen
       var v=document.getElementById('introVideo');
       var b=document.getElementById('unmuteBtn');
-      var t=document.getElementById('togglePlay');
+      var btnRestart=document.getElementById('btnRestart');
+      var btnBack=document.getElementById('btnBack');
+      var btnForward=document.getElementById('btnForward');
+      var btnPlayPause=document.getElementById('btnPlayPause');
+      var btnMute=document.getElementById('btnMute');
+      var btnFS=document.getElementById('btnFS');
+
+      function syncPlayLabel(){ if(!btnPlayPause||!v) return; btnPlayPause.textContent = v.paused ? '▶️ Reproduzir' : '⏸️ Pausar'; btnPlayPause.setAttribute('aria-label', v.paused?'Reproduzir vídeo':'Pausar vídeo'); }
+      function syncMuteLabel(){ if(!btnMute||!v) return; btnMute.textContent = v.muted ? '🔇 Sem som' : '🔊 Com som'; btnMute.setAttribute('aria-label', v.muted?'Ativar som':'Desativar som'); }
+
       if(v){
-        function syncToggleLabel(){ if(!t) return; t.textContent = v.paused ? '▶️ Reproduzir' : '⏸️ Pausar'; t.setAttribute('aria-label', v.paused ? 'Reproduzir vídeo' : 'Pausar vídeo'); }
-        if(t){ t.addEventListener('click', function(){ if(v.paused){ v.play().catch(function(){}); } else { v.pause(); } syncToggleLabel(); }); }
-        if(b){ b.addEventListener('click', function(){ v.muted = false; v.play().catch(function(){}); b.hidden = true; }); }
+        if(btnRestart){ btnRestart.addEventListener('click', function(){ v.currentTime = 0; v.play().catch(function(){}); syncPlayLabel(); }); }
+        if(btnBack){ btnBack.addEventListener('click', function(){ v.currentTime = Math.max(0, (v.currentTime||0) - 10); }); }
+        if(btnForward){ btnForward.addEventListener('click', function(){ try{ var d=isFinite(v.duration)?v.duration:0; v.currentTime = Math.min( (d>0?d-0.1: (v.currentTime||0)+10), (v.currentTime||0) + 10 ); }catch(e){} }); }
+        if(btnPlayPause){ btnPlayPause.addEventListener('click', function(){ if(v.paused){ v.play().catch(function(){}); } else { v.pause(); } syncPlayLabel(); }); }
+        if(btnMute){ btnMute.addEventListener('click', function(){ v.muted = !v.muted; syncMuteLabel(); if(!v.muted && b){ b.hidden = true; } }); }
+        if(b){ b.addEventListener('click', function(){ v.muted = false; v.play().catch(function(){}); b.hidden = true; syncMuteLabel(); }); }
+        if(btnFS){ btnFS.addEventListener('click', function(){ var box = v.parentElement; try{ if(document.fullscreenElement){ document.exitFullscreen(); } else { if(box && box.requestFullscreen){ box.requestFullscreen(); } } }catch(e){} }); }
         try{
-          var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting){ v.pause(); syncToggleLabel(); } }); }, {threshold:0.25});
+          var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting){ v.pause(); syncPlayLabel(); } }); }, {threshold:0.25});
           io.observe(v);
         }catch(e){}
-        v.onerror=function(){ var fb=document.getElementById('videoFallback'); if(fb) fb.style.display='block'; };
-        v.onplay=syncToggleLabel; v.onpause=syncToggleLabel; syncToggleLabel();
+        v.addEventListener('error', function(){ var fb=document.getElementById('videoFallback'); if(fb) fb.style.display='block'; });
+        v.addEventListener('play', syncPlayLabel); v.addEventListener('pause', syncPlayLabel); v.addEventListener('volumechange', syncMuteLabel);
+        syncPlayLabel(); syncMuteLabel();
       }
 
       // Scroll "confiança"
@@ -364,6 +403,59 @@
       // Copiar OAB
       var btn = document.getElementById('copy-oab-btn'); if(btn){ btn.addEventListener('click', function(e){ e.preventDefault(); copyTextSafe('Rafael Toledo da Silva Duarte - OAB/RJ 227191'); try{ if(window.gtag){ gtag('event','copy_oab'); } }catch(err){} }); }
     });
+  </script>
+<script>
+    // Controles completos do vídeo (play/pause, reinício, ±10s, seek, fullscreen) + CTA WhatsApp overlay
+    (function(){
+      var v=document.getElementById('introVideo');
+      var b=document.getElementById('unmuteBtn');
+      var wrap=document.getElementById('videoWrap');
+      var playBtn=document.getElementById('playPauseBtn');
+      var restartBtn=document.getElementById('restartBtn');
+      var back10Btn=document.getElementById('back10Btn');
+      var fwd10Btn=document.getElementById('fwd10Btn');
+      var seek=document.getElementById('seekBar');
+      var fsBtn=document.getElementById('fsBtn');
+      function sync(){
+        if(!v) return;
+        if(seek && v.duration){ seek.value = (v.currentTime / v.duration) * 100; }
+        if(playBtn){ var paused=v.paused; playBtn.textContent = paused ? '▶️ Reproduzir' : '⏸️ Pausar'; playBtn.setAttribute('aria-label', paused ? 'Reproduzir vídeo' : 'Pausar vídeo'); }
+        if(fsBtn){ fsBtn.textContent = document.fullscreenElement ? '🞬 Fechar' : '⛶ Ampliar'; fsBtn.setAttribute('aria-label', document.fullscreenElement ? 'Fechar vídeo ampliado' : 'Ampliar vídeo'); }
+      }
+      function seekBy(sec){ if(!v) return; try{ var t=v.currentTime + sec; if(v.duration){ t = Math.max(0, Math.min(v.duration, t)); } v.currentTime = t; sync(); }catch(e){} }
+      if(v){
+        v.addEventListener('timeupdate', sync);
+        v.addEventListener('loadedmetadata', sync);
+        if(seek){ seek.addEventListener('input', function(){ if(v.duration){ v.currentTime = (seek.value/100)*v.duration; } }); }
+        if(restartBtn){ restartBtn.addEventListener('click', function(){ v.currentTime = 0; v.play().catch(function(){}); sync(); }); }
+        if(back10Btn){ back10Btn.addEventListener('click', function(){ seekBy(-10); }); }
+        if(fwd10Btn){ fwd10Btn.addEventListener('click', function(){ seekBy(10); }); }
+        if(playBtn){ playBtn.addEventListener('click', function(){ if(v.paused){ v.play().catch(function(){}); } else { v.pause(); } sync(); }); }
+        if(b){ b.addEventListener('click', function(){ v.muted=false; v.play().catch(function(){}); b.hidden=true; }); }
+        if(fsBtn && wrap){
+          fsBtn.addEventListener('click', function(){
+            if(document.fullscreenElement){ document.exitFullscreen && document.exitFullscreen(); }
+            else { wrap.requestFullscreen && wrap.requestFullscreen(); }
+            setTimeout(sync, 200);
+          });
+          document.addEventListener('fullscreenchange', sync);
+        }
+        try{
+          var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting && !document.fullscreenElement){ v.pause(); sync(); } }); }, {threshold:0.25});
+          io.observe(v);
+        }catch(e){}
+        v.onerror=function(){ var fb=document.getElementById('videoFallback'); if(fb) fb.style.display='block'; };
+        v.onplay=sync; v.onpause=sync; sync();
+        document.addEventListener('keydown', function(ev){
+          if(document.activeElement && (document.activeElement.tagName==='INPUT' || document.activeElement.tagName==='TEXTAREA')) return;
+          if(ev.code==='Space'){ ev.preventDefault(); if(v.paused){ v.play().catch(function(){}); } else { v.pause(); } sync(); }
+          if(ev.key==='ArrowLeft'){ ev.preventDefault(); seekBy(-5); }
+          if(ev.key==='ArrowRight'){ ev.preventDefault(); seekBy(5); }
+          if(ev.key && ev.key.toLowerCase && ev.key.toLowerCase()==='j'){ ev.preventDefault(); seekBy(-10); }
+          if(ev.key && ev.key.toLowerCase && ev.key.toLowerCase()==='l'){ ev.preventDefault(); seekBy(10); }
+        });
+      }
+    })();
   </script>
 </body>
 </html>
