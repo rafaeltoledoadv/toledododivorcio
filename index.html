@@ -735,7 +735,7 @@
             </a>
           </div>
           <p style="font-size:12px;color:var(--muted);margin:4px 0 0;">
-            Mensagem sugerida: <b>“Temos filhos menores e queremos um divórcio amigável online.”</b>
+            Mensagem sugerida: <b>“Temos filhos menores and queremos um divórcio amigável online.”</b>
           </p>
         </article>
 
@@ -997,21 +997,25 @@
 
       function openWA(msg, utm){
         var baseMsg = msg || 'Olá, Dr. Rafael.';
-        var extra = '
-
-[Origem: anúncio Google · posição: ' + (utm || 'na') + ']';
+        var extra = '\n\n[Origem: anúncio Google · posição: ' + (utm || 'na') + ']';
 
         try{
           var raw = localStorage.getItem('ad_attrib');
           if(raw){
-            var data = JSON.parse(raw);
-            var parts = [];
-            if(data.gclid) parts.push('gclid: ' + data.gclid);
-            if(data.wbraid) parts.push('wbraid: ' + data.wbraid);
-            if(data.gbraid) parts.push('gbraid: ' + data.gbraid);
-            if(parts.length){
-              extra += '
-[Dados do anúncio: ' + parts.join(' · ') + ']';
+            var data = null;
+            try{
+              data = JSON.parse(raw);
+            }catch(parseErr){
+              data = null;
+            }
+            if(data){
+              var parts = [];
+              if(data.gclid) parts.push('gclid: ' + data.gclid);
+              if(data.wbraid) parts.push('wbraid: ' + data.wbraid);
+              if(data.gbraid) parts.push('gbraid: ' + data.gbraid);
+              if(parts.length){
+                extra += '\n[Dados do anúncio: ' + parts.join(' · ') + ']';
+              }
             }
           }
         }catch(e){}
