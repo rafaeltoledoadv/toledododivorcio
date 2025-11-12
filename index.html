@@ -12,20 +12,18 @@
   <meta name="robots" content="noindex,nofollow,noarchive" />
   <meta name="googlebot" content="noindex,nofollow,noarchive" />
 
-  <!-- Performance: preconnect para WhatsApp e serviços OAB -->
+  <!-- Performance: preconnect -->
   <link rel="preconnect" href="https://api.whatsapp.com" crossorigin>
-  <link rel="preconnect" href="https://confirmadv.oab.org.br" crossorigin>
-  <link rel="preconnect" href="https://cna.oab.org.br" crossorigin>
 
-  <!-- GA4 básico -->
+  <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-M06M084R2N"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
     gtag('config', 'G-M06M084R2N');
 
-    // Placeholders para Google Ads (preencha se/quando tiver)
+    // Placeholders para Google Ads (preencha quando tiver)
     window.AW_ID = 'AW-XXXXXXXXXX';
     window.AW_CONVERSION_LABEL = 'XXXXXXXXXXXX';
   </script>
@@ -37,7 +35,6 @@
       --ink:#dbe7ff;
       --muted:#9fb3d1;
       --brand:#00d4ff;
-      --brand-strong:#00a3c7;
       --success:#2dd4bf;
       --danger:#ff6b6b;
       --shadow:0 12px 30px rgba(0,0,0,.35);
@@ -58,7 +55,7 @@
       position:sticky;
       top:0;
       z-index:50;
-      background:rgba(11,15,20,.88);
+      background:rgba(11,15,20,.9);
       backdrop-filter:saturate(160%) blur(8px);
       border-bottom:1px solid rgba(255,255,255,.06);
     }
@@ -492,12 +489,6 @@
       z-index:60;
     }
 
-    /* Desempenho em telas pequenas */
-    @media (max-width:480px){
-      :root{--shadow:0 4px 10px rgba(0,0,0,.2);}
-      .frame{box-shadow:var(--shadow);}
-    }
-
     @media (max-width:1024px){
       .hero-grid{grid-template-columns:1fr}
       .about{grid-template-columns:1fr}
@@ -510,7 +501,7 @@
 
     @media (max-width:640px){
       .nav{flex-wrap:wrap}
-      nav{display:none;} /* Se quiser, depois transformamos em menu hambúrguer */
+      nav{display:none;}
       .hero h1{font-size:30px;line-height:1.15;}
       .hero p.lead{font-size:16px;}
       section h2{font-size:26px;}
@@ -622,7 +613,6 @@
             <button id="playPauseBtn" type="button" aria-label="Pausar vídeo">⏸️</button>
             <button id="fwd10Btn" type="button" aria-label="Avançar 10 segundos">⏩ 10s</button>
             <input id="seekBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Progresso do vídeo" />
-            <button id="fsBtn" type="button" aria-label="Ampliar vídeo">⛶</button>
           </div>
           <a href="#"
              class="video-wa wa"
@@ -732,7 +722,7 @@
             <li>✔️ <b>Processo 100% digital:</b> petição inicial eletrônica com pedido de justiça gratuita sempre que houver perfil econômico.</li>
             <li>✔️ <b>Justiça gratuita:</b> na prática, em grande parte dos casos com renda compatível,
               o cliente não paga custas judiciais, arcando apenas com os honorários.
-              <small>(Sempre sujeito à análise do juiz e à comprovação de hipossuficiência.)</small></li>
+              <small>(Sujeito à análise do juiz e comprovação de hipossuficiência.)</small></li>
             <li>✔️ <b>Audiência online:</b> se o juiz marcar audiência, ela acontece por videoconferência, com preparação prévia comigo.</li>
             <li>✔️ <b>Acompanhamento total:</b> sigo com você até a homologação do divórcio e oriento as etapas finais.</li>
           </ul>
@@ -829,15 +819,6 @@
           Você resolve tudo de casa, sem encontros presenciais com o ex-cônjuge e com
           acompanhamento jurídico em todas as etapas.
         </p>
-        <div class="pills">
-          <span class="pill">Queimados</span>
-          <span class="pill">Nova Iguaçu</span>
-          <span class="pill">São João de Meriti</span>
-          <span class="pill">Duque de Caxias</span>
-          <span class="pill">Belford Roxo</span>
-          <span class="pill">Mesquita</span>
-          <span class="pill">Nilópolis</span>
-        </div>
       </div>
     </div>
   </section>
@@ -1003,135 +984,83 @@
   </div>
 
   <script>
-    // Monta URL do WhatsApp com UTM e mensagem
-    function waUrl(msg, utm){
-      var qs = new URLSearchParams({
-        phone: '5521996921402',
-        text: msg || 'Olá, Dr. Rafael.',
-        utm_source: 'site',
-        utm_medium: 'whatsapp',
-        utm_campaign: 'lp-divorcio',
-        utm_content: (utm || 'na')
-      });
-      return 'https://api.whatsapp.com/send?' + qs.toString();
-    }
-
-    function openWA(msg, utm){
-      var baseMsg = msg || 'Olá, Dr. Rafael.';
-      var extra = '\n\n[Origem: anúncio Google · posição: ' + (utm || 'na') + ']';
-
-      // Anexa gclid / wbraid / gbraid se existirem
-      try{
-        var raw = localStorage.getItem('ad_attrib');
-        if(raw){
-          var data = JSON.parse(raw);
-          var parts = [];
-          if(data.gclid) parts.push('gclid: ' + data.gclid);
-          if(data.wbraid) parts.push('wbraid: ' + data.wbraid);
-          if(data.gbraid) parts.push('gbraid: ' + data.gbraid);
-          if(parts.length){
-            extra += '\n[Dados do anúncio: ' + parts.join(' · ') + ']';
-          }
-        }
-      }catch(e){}
-
-      var finalMsg = baseMsg + extra;
-      var url = waUrl(finalMsg, utm);
-
-      try{
-        var win = window.open(url, '_blank', 'noopener');
-        if(!win){ location.href = url; }
-      }catch(e){
-        location.href = url;
+    (function(){
+      // Monta URL de WhatsApp (sem depender de URLSearchParams para evitar incompatibilidades)
+      function waUrl(msg, utm){
+        var base = 'https://api.whatsapp.com/send';
+        var q = 'phone=5521996921402';
+        q += '&text=' + encodeURIComponent(msg || 'Olá, Dr. Rafael.');
+        q += '&utm_source=site&utm_medium=whatsapp&utm_campaign=lp-divorcio';
+        q += '&utm_content=' + encodeURIComponent(utm || 'na');
+        return base + '?' + q;
       }
-      return false;
-    }
 
-    // Copia texto com fallback (clipboard → execCommand → prompt)
-    async function copyTextSafe(text){
-      try{
-        if(window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText){
-          await navigator.clipboard.writeText(text);
-          alert('Dados copiados! Cole no ConfirmAdv/CNA quando quiser.');
-          return true;
-        }
-      }catch(err){}
-      try{
-        var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.setAttribute('readonly','');
-        ta.style.position='fixed';
-        ta.style.top='-1000px';
-        document.body.appendChild(ta);
-        ta.focus(); ta.select();
-        var ok = document.execCommand('copy');
-        document.body.removeChild(ta);
-        if(ok){
-          alert('Dados copiados! Cole no ConfirmAdv/CNA quando quiser.');
-          return true;
-        }
-      }catch(e){}
-      window.prompt('Copie os dados com CTRL+C / ⌘C e depois ENTER:', text);
-      return false;
-    }
+      function openWA(msg, utm){
+        var baseMsg = msg || 'Olá, Dr. Rafael.';
+        var extra = '
 
-    document.addEventListener('DOMContentLoaded', function(){
-      // Delegação de cliques para TODOS os links .wa
-      document.body.addEventListener('click', function(e){
-        var a = e.target.closest('a.wa');
-        if(!a) return;
-        e.preventDefault();
-        var msg = a.getAttribute('data-msg') || 'Olá, Dr. Rafael.';
-        var utm = a.getAttribute('data-utm') || 'na';
+[Origem: anúncio Google · posição: ' + (utm || 'na') + ']';
 
-        // GA4: evento de clique em WhatsApp
         try{
-          if(window.gtag){
-            gtag('event','whatsapp_click',{
-              event_category:'engagement',
-              event_label: utm,
-              value:1
-            });
+          var raw = localStorage.getItem('ad_attrib');
+          if(raw){
+            var data = JSON.parse(raw);
+            var parts = [];
+            if(data.gclid) parts.push('gclid: ' + data.gclid);
+            if(data.wbraid) parts.push('wbraid: ' + data.wbraid);
+            if(data.gbraid) parts.push('gbraid: ' + data.gbraid);
+            if(parts.length){
+              extra += '
+[Dados do anúncio: ' + parts.join(' · ') + ']';
+            }
           }
-        }catch(err){}
+        }catch(e){}
 
-        // Google Ads: conversão (se configurado)
+        var finalMsg = baseMsg + extra;
+        var url = waUrl(finalMsg, utm);
+
         try{
-          if(window.gtag &&
-             window.AW_ID && window.AW_ID !== 'AW-XXXXXXXXXX' &&
-             window.AW_CONVERSION_LABEL && window.AW_CONVERSION_LABEL !== 'XXXXXXXXXXXX'){
-            gtag('event','conversion',{
-              send_to: window.AW_ID + '/' + window.AW_CONVERSION_LABEL,
-              event_callback: function(){ openWA(msg, utm); }
-            });
-            setTimeout(function(){ openWA(msg, utm); }, 800);
+          var win = window.open(url, '_blank', 'noopener');
+          if(!win){ location.href = url; }
+        }catch(e){
+          location.href = url;
+        }
+      }
+
+      function copyTextSafe(text){
+        // 1) Clipboard API se permitido
+        if(window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(function(){
+            alert('Dados copiados! Cole no ConfirmAdv/CNA quando quiser.');
+          }).catch(function(){
+            fallbackCopy(text);
+          });
+        }else{
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text){
+        try{
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly','');
+          ta.style.position='fixed';
+          ta.style.top='-1000px';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          var ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          if(ok){
+            alert('Dados copiados! Cole no ConfirmAdv/CNA quando quiser.');
             return;
           }
-        }catch(err){}
-        openWA(msg, utm);
-      }, {passive:false});
-
-      // Botão copiar OAB
-      var btn = document.getElementById('copy-oab-btn');
-      if(btn){
-        btn.addEventListener('click', function(ev){
-          ev.preventDefault();
-          copyTextSafe('Rafael Toledo da Silva Duarte - OAB/RJ 227191');
-          try{ if(window.gtag){ gtag('event','copy_oab'); } }catch(err){}
-        }, {passive:false});
+        }catch(e){}
+        window.prompt('Copie os dados com CTRL+C / ⌘C e depois ENTER:', text);
       }
 
-      // Scroll suave para "Como verificar minha identidade"
-      var trustLink = document.querySelector('a[href="#confianca"]');
-      if(trustLink){
-        trustLink.addEventListener('click', function(e){
-          e.preventDefault();
-          document.querySelector('#confianca').scrollIntoView({behavior:'smooth', block:'start'});
-        });
-      }
-
-      // Captura GCLID/WBRAID/GBRAID para conversões offline
-      (function(){
+      function captureAdParams(){
         try{
           var p = new URLSearchParams(location.search);
           var gclid = p.get('gclid');
@@ -1148,141 +1077,156 @@
             localStorage.setItem('ad_attrib', JSON.stringify(data));
           }
         }catch(e){}
-      })();
-    });
+      }
 
-    // Controles do vídeo: play/pause, reinício, ±10s, seek e fullscreen
-    (function(){
-      var v   = document.getElementById('introVideo');
-      var b   = document.getElementById('unmuteBtn');
-      var wrap= document.getElementById('videoWrap');
-      var playBtn    = document.getElementById('playPauseBtn');
-      var restartBtn = document.getElementById('restartBtn');
-      var back10Btn  = document.getElementById('back10Btn');
-      var fwd10Btn   = document.getElementById('fwd10Btn');
-      var seek       = document.getElementById('seekBar');
-      var fsBtn      = document.getElementById('fsBtn');
-      var fallback   = document.getElementById('videoFallback');
+      document.addEventListener('DOMContentLoaded', function(){
+        captureAdParams();
 
-      if(!v) return;
-
-      function sync(){
-        try{
-          if(seek && v.duration){
-            seek.value = (v.currentTime / v.duration) * 100;
+        // Delegação de cliques para todos os .wa
+        document.body.addEventListener('click', function(e){
+          var el = e.target;
+          while(el && el !== document.body){
+            if(el.tagName && el.tagName.toLowerCase() === 'a' && (el.className || '').indexOf('wa') !== -1){
+              break;
+            }
+            el = el.parentNode;
           }
-          if(playBtn){
-            var paused = v.paused;
-            playBtn.textContent = paused ? '▶️' : '⏸️';
-            playBtn.setAttribute('aria-label', paused ? 'Reproduzir vídeo' : 'Pausar vídeo');
-          }
-          if(fsBtn){
-            var fs = !!document.fullscreenElement;
-            fsBtn.textContent = fs ? '🞬' : '⛶';
-            fsBtn.setAttribute('aria-label', fs ? 'Fechar vídeo ampliado' : 'Ampliar vídeo');
-          }
-        }catch(e){}
-      }
+          if(!el || el === document.body) return;
+          e.preventDefault();
+          var msg = el.getAttribute('data-msg') || 'Olá, Dr. Rafael.';
+          var utm = el.getAttribute('data-utm') || 'na';
 
-      function seekBy(sec){
-        try{
-          var t = v.currentTime + sec;
-          if(v.duration){
-            t = Math.max(0, Math.min(v.duration, t));
-          }
-          v.currentTime = t;
-          sync();
-        }catch(e){}
-      }
-
-      // Tentativa de autoplay silencioso
-      try{
-        v.muted = true;
-        var p = v.play();
-        if(p && p.catch) p.catch(function(){});
-      }catch(e){}
-
-      v.addEventListener('timeupdate', sync);
-      v.addEventListener('loadedmetadata', sync);
-
-      if(seek){
-        seek.addEventListener('input', function(){
-          if(v.duration){
-            v.currentTime = (seek.value/100) * v.duration;
-            sync();
-          }
-        });
-      }
-
-      if(restartBtn){
-        restartBtn.addEventListener('click', function(){
-          v.currentTime = 0;
-          v.play().catch(function(){});
-          sync();
-        });
-      }
-
-      if(back10Btn){
-        back10Btn.addEventListener('click', function(){ seekBy(-10); });
-      }
-
-      if(fwd10Btn){
-        fwd10Btn.addEventListener('click', function(){ seekBy(10); });
-      }
-
-      if(playBtn){
-        playBtn.addEventListener('click', function(){
-          if(v.paused){
-            v.play().catch(function(){});
-          }else{
-            v.pause();
-          }
-          sync();
-        });
-      }
-
-      if(b){
-        b.addEventListener('click', function(){
-          v.muted = false;
-          v.play().catch(function(){});
-          b.hidden = true;
-        });
-      }
-
-      if(fsBtn && wrap){
-        fsBtn.addEventListener('click', function(){
           try{
-            if(document.fullscreenElement){
-              if(document.exitFullscreen) document.exitFullscreen();
-            }else{
-              if(wrap.requestFullscreen) wrap.requestFullscreen();
+            if(window.gtag){
+              gtag('event','whatsapp_click',{
+                event_category:'engagement',
+                event_label: utm,
+                value:1
+              });
             }
-          }catch(e){}
-          setTimeout(sync, 200);
-        });
-        document.addEventListener('fullscreenchange', sync);
-      }
+          }catch(err){}
 
-      // Pausa o vídeo se sair totalmente da tela (exceto fullscreen)
-      try{
-        var io = new IntersectionObserver(function(entries){
-          entries.forEach(function(e){
-            if(!e.isIntersecting && !document.fullscreenElement){
-              v.pause();
+          try{
+            if(window.gtag &&
+               window.AW_ID && window.AW_ID.indexOf('XXXX') === -1 &&
+               window.AW_CONVERSION_LABEL && window.AW_CONVERSION_LABEL.indexOf('XXXX') === -1){
+              gtag('event','conversion',{
+                send_to: window.AW_ID + '/' + window.AW_CONVERSION_LABEL
+              });
+            }
+          }catch(err){}
+
+          openWA(msg, utm);
+        }, false);
+
+        // Botão copiar OAB
+        var btn = document.getElementById('copy-oab-btn');
+        if(btn){
+          btn.addEventListener('click', function(ev){
+            ev.preventDefault();
+            copyTextSafe('Rafael Toledo da Silva Duarte - OAB/RJ 227191');
+            try{ if(window.gtag){ gtag('event','copy_oab'); } }catch(err){}
+          }, false);
+        }
+
+        // Controles do vídeo
+        var v        = document.getElementById('introVideo');
+        var unmute   = document.getElementById('unmuteBtn');
+        var restart  = document.getElementById('restartBtn');
+        var back10   = document.getElementById('back10Btn');
+        var playBtn  = document.getElementById('playPauseBtn');
+        var fwd10    = document.getElementById('fwd10Btn');
+        var seek     = document.getElementById('seekBar');
+        var fallback = document.getElementById('videoFallback');
+
+        if(v){
+          function sync(){
+            try{
+              if(seek && v.duration){
+                seek.value = (v.currentTime / v.duration) * 100;
+              }
+              if(playBtn){
+                var paused = v.paused;
+                playBtn.textContent = paused ? '▶️' : '⏸️';
+                playBtn.setAttribute('aria-label', paused ? 'Reproduzir vídeo' : 'Pausar vídeo');
+              }
+            }catch(e){}
+          }
+
+          function seekBy(sec){
+            try{
+              var t = v.currentTime + sec;
+              if(v.duration){
+                t = Math.max(0, Math.min(v.duration, t));
+              }
+              v.currentTime = t;
               sync();
-            }
-          });
-        }, {threshold:0.25});
-        io.observe(v);
-      }catch(e){}
+            }catch(e){}
+          }
 
-      v.onerror = function(){
-        if(fallback) fallback.style.display = 'block';
-      };
-      v.onplay = sync;
-      v.onpause = sync;
+          // Tenta autoplay silencioso
+          try{
+            v.muted = true;
+            var p = v.play();
+            if(p && p.catch){ p.catch(function(){}); }
+          }catch(e){}
 
-      sync();
+          v.addEventListener('timeupdate', sync);
+          v.addEventListener('loadedmetadata', sync);
+
+          if(seek){
+            seek.addEventListener('input', function(){
+              if(v.duration){
+                v.currentTime = (seek.value / 100) * v.duration;
+                sync();
+              }
+            });
+          }
+
+          if(restart){
+            restart.addEventListener('click', function(){
+              v.currentTime = 0;
+              v.play().catch(function(){});
+              sync();
+            });
+          }
+
+          if(back10){
+            back10.addEventListener('click', function(){ seekBy(-10); });
+          }
+
+          if(fwd10){
+            fwd10.addEventListener('click', function(){ seekBy(10); });
+          }
+
+          if(playBtn){
+            playBtn.addEventListener('click', function(){
+              if(v.paused){
+                v.play().catch(function(){});
+              }else{
+                v.pause();
+              }
+              sync();
+            });
+          }
+
+          if(unmute){
+            unmute.addEventListener('click', function(){
+              v.muted = false;
+              v.play().catch(function(){});
+              unmute.hidden = true;
+            });
+          }
+
+          v.onerror = function(){
+            if(fallback){ fallback.style.display = 'block'; }
+          };
+
+          v.onplay = sync;
+          v.onpause = sync;
+          sync();
+        }
+      });
     })();
   </script>
 </body>
