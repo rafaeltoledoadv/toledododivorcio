@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+# Este arquivo impede que buscadores indexem qualquer URL do seu domínio.
+# Não afeta Google Ads nem GA4; apenas a indexação orgânica.
