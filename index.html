@@ -977,26 +977,8 @@
   </div>
 
   <script>
-    (function(){
-      function waUrl(msg, utm){
-        var base = 'https://api.whatsapp.com/send';
-        var q = 'phone=5521996921402';
-        q += '&text=' + encodeURIComponent(msg || 'Olá, Dr. Rafael.');
-        q += '&utm_source=site&utm_medium=whatsapp&utm_campaign=lp-divorcio';
-        q += '&utm_content=' + encodeURIComponent(utm || 'na');
-        return base + '?' + q;
-      }
-
-      function openWA(msg, utm){
-        var finalMsg = msg || 'Olá, Dr. Rafael.';
-        var url = waUrl(finalMsg, utm);
-        try{
-          var win = window.open(url, '_blank', 'noopener');
-          if(!win){ location.href = url; }
-        }catch(e){
-          location.href = url;
-        }
-      }
+    document.addEventListener('DOMContentLoaded', function(){
+      var numero = '5521996921402';
 
       function copyTextSafe(text){
         if(window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText){
@@ -1030,41 +1012,12 @@
         window.prompt('Copie os dados com CTRL+C / ⌘C e depois ENTER:', text);
       }
 
-      function captureAdParams(){
-        try{
-          var p = new URLSearchParams(location.search);
-          var gclid = p.get('gclid');
-          var wbraid = p.get('wbraid');
-          var gbraid = p.get('gbraid');
-          if(gclid || wbraid || gbraid){
-            var data = {
-              gclid: gclid || '',
-              wbraid: wbraid || '',
-              gbraid: gbraid || '',
-              ts: Date.now(),
-              ref: document.referrer || ''
-            };
-            localStorage.setItem('ad_attrib', JSON.stringify(data));
-          }
-        }catch(e){}
-      }
-
-      document.addEventListener('DOMContentLoaded', function(){
-        captureAdParams();
-
-        document.body.addEventListener('click', function(e){
-          var el = e.target;
-          while(el && el !== document.body){
-            if(el.tagName && el.tagName.toLowerCase() === 'a' && (el.className || '').indexOf('wa') !== -1){
-              break;
-            }
-            el = el.parentNode;
-          }
-          if(!el || el === document.body) return;
+      var waLinks = document.querySelectorAll('.wa');
+      waLinks.forEach(function(el){
+        el.addEventListener('click', function(e){
           e.preventDefault();
           var msg = el.getAttribute('data-msg') || 'Olá, Dr. Rafael.';
           var utm = el.getAttribute('data-utm') || 'na';
-
           try{
             if(window.gtag){
               gtag('event','whatsapp_click',{
@@ -1074,7 +1027,6 @@
               });
             }
           }catch(err){}
-
           try{
             if(window.gtag &&
                window.AW_ID && window.AW_ID.indexOf('XXXX') === -1 &&
@@ -1084,70 +1036,136 @@
               });
             }
           }catch(err){}
-
-          openWA(msg, utm);
+          var url = 'https://wa.me/'+numero+'?text='+encodeURIComponent(msg);
+          window.location.href = url;
         }, false);
+      });
 
-        var btn = document.getElementById('copy-oab-btn');
-        if(btn){
-          btn.addEventListener('click', function(ev){
-            ev.preventDefault();
-            copyTextSafe('Rafael Toledo da Silva Duarte - OAB/RJ 227191');
-            try{ if(window.gtag){ gtag('event','copy_oab'); } }catch(err){}
-          }, false);
+      var copyBtn = document.getElementById('copy-oab-btn');
+      if(copyBtn){
+        copyBtn.addEventListener('click', function(ev){
+          ev.preventDefault();
+          copyTextSafe('Rafael Toledo da Silva Duarte - OAB/RJ 227191');
+          try{
+            if(window.gtag){
+              gtag('event','copy_oab');
+            }
+          }catch(err){}
+        }, false);
+      }
+
+      var v = document.getElementById('introVideo');
+      var unmute = document.getElementById('unmuteBtn');
+      var restart = document.getElementById('restartBtn');
+      var back10 = document.getElementById('back10Btn');
+      var playBtn = document.getElementById('playPauseBtn');
+      var fwd10 = document.getElementById('fwd10Btn');
+      var seek = document.getElementById('seekBar');
+      var fallback = document.getElementById('videoFallback');
+
+      if(v){
+        function sync(){
+          try{
+            if(seek && v.duration){
+              seek.value = (v.currentTime / v.duration) * 100;
+            }
+            if(playBtn){
+              if(v.paused){
+                playBtn.textContent = '▶️';
+                playBtn.setAttribute('aria-label','Reproduzir vídeo');
+              }else{
+                playBtn.textContent = '⏸️';
+                playBtn.setAttribute('aria-label','Pausar vídeo');
+              }
+            }
+          }catch(e){}
         }
 
-        var v        = document.getElementById('introVideo');
-        var unmute   = document.getElementById('unmuteBtn');
-        var restart  = document.getElementById('restartBtn');
-        var back10   = document.getElementById('back10Btn');
-        var playBtn  = document.getElementById('playPauseBtn');
-        var fwd10    = document.getElementById('fwd10Btn');
-        var seek     = document.getElementById('seekBar');
-        var fallback = document.getElementById('videoFallback');
+        function seekBy(sec){
+          try{
+            var t = v.currentTime + sec;
+            if(v.duration){
+              if(t < 0){ t = 0; }
+              if(t > v.duration){ t = v.duration; }
+            }
+            v.currentTime = t;
+            sync();
+          }catch(e){}
+        }
 
-        if(v){
-          function sync(){
-            try{
-              if(seek && v.duration){
-                seek.value = (v.currentTime / v.duration) * 100;
-              }
-              if(playBtn){
-                var paused = v.paused;
-                playBtn.textContent = paused ? '▶️' : '⏸️';
-                playBtn.setAttribute('aria-label', paused ? 'Reproduzir vídeo' : 'Pausar vídeo');
-              }
-            }catch(e){}
-          }
+        try{
+          v.muted = true;
+          var p = v.play();
+          if(p && p.catch){ p.catch(function(){}); }
+        }catch(e){}
 
-          function seekBy(sec){
+        v.addEventListener('timeupdate', sync);
+        v.addEventListener('loadedmetadata', sync);
+
+        if(seek){
+          seek.addEventListener('input', function(){
+            if(v.duration){
+              v.currentTime = (seek.value / 100) * v.duration;
+              sync();
+            }
+          });
+        }
+
+        if(restart){
+          restart.addEventListener('click', function(){
             try{
-              var t = v.currentTime + sec;
-              if(v.duration){
-                t = Math.max(0, Math.min(v.duration, t));
-              }
-              v.currentTime = t;
+              v.currentTime = 0;
+              var p2 = v.play();
+              if(p2 && p2.catch){ p2.catch(function(){}); }
               sync();
             }catch(e){}
-          }
+          });
+        }
 
-          try{
-            v.muted = true;
-            var p = v.play();
-            if(p && p.catch){ p.catch(function(){}); }
-          }catch(e){}
+        if(back10){
+          back10.addEventListener('click', function(){
+            seekBy(-10);
+          });
+        }
 
-          v.addEventListener('timeupdate', sync);
-          v.addEventListener('loadedmetadata', sync);
+        if(fwd10){
+          fwd10.addEventListener('click', function(){
+            seekBy(10);
+          });
+        }
 
-          if(seek){
-            seek.addEventListener('input', function(){
-              if(v.duration){
-                v.currentTime = (seek.value / 100) * v.duration;
-                sync();
+        if(playBtn){
+          playBtn.addEventListener('click', function(){
+            try{
+              if(v.paused){
+                var p3 = v.play();
+                if(p3 && p3.catch){ p3.catch(function(){}); }
+              }else{
+                v.pause();
               }
-            });
-          }
+              sync();
+            }catch(e){}
+          });
+        }
 
-          if(restart){
-            restart.addEventListener
+        if(unmute){
+          unmute.addEventListener('click', function(){
+            try{
+              v.muted = false;
+              var p4 = v.play();
+              if(p4 && p4.catch){ p4.catch(function(){}); }
+              unmute.hidden = true;
+            }catch(e){}
+          });
+        }
+
+        v.addEventListener('error', function(){
+          if(fallback){
+            fallback.style.display = 'block';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
