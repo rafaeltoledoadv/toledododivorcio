@@ -5,7 +5,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17715024874"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
 
     // Google Ads (conversões)
@@ -25,7 +25,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive" />
   <meta name="googlebot" content="noindex,nofollow,noarchive" />
 
-  <link rel="preconnect" href="https://api.whatsapp.com" crossorigin>
+  <link rel="preconnect" href="https://wa.me" crossorigin>
 
   <style>
     :root{
@@ -1000,8 +1000,8 @@
           var ta = document.createElement('textarea');
           ta.value = text;
           ta.setAttribute('readonly','');
-          ta.style.position='fixed';
-          ta.style.top='-1000px';
+          ta.style.position = 'fixed';
+          ta.style.top = '-1000px';
           document.body.appendChild(ta);
           ta.focus();
           ta.select();
@@ -1015,15 +1015,23 @@
         window.prompt('Copie os dados com CTRL+C / ⌘C e depois ENTER:', text);
       }
 
-      /* CLICKS NO WHATSAPP – ENGAGEMENT + CONVERSÃO */
+      // CLICKS NO WHATSAPP – ENGAGEMENT + CONVERSÃO, ABRINDO EM NOVA ABA
       var waLinks = document.querySelectorAll('.wa');
       waLinks.forEach(function(el){
         el.addEventListener('click', function(e){
           e.preventDefault();
           var msg = el.getAttribute('data-msg') || 'Olá, Dr. Rafael.';
           var utm = el.getAttribute('data-utm') || 'na';
+          var url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(msg);
 
-          // Evento de engajamento (opcional, só para GA4)
+          // abre o WhatsApp em nova aba/janela
+          var newWin = window.open(url, '_blank');
+          if(!newWin){
+            // fallback se o navegador bloquear pop-up: abre na mesma aba
+            window.location.href = url;
+          }
+
+          // Evento de engajamento (GA4) + conversão (Google Ads)
           try{
             if(window.gtag){
               gtag('event','whatsapp_click',{
@@ -1031,20 +1039,17 @@
                 event_label: utm,
                 value:1
               });
-            }
-          }catch(err){}
 
-          // CONVERSÃO DO GOOGLE ADS (ESSENCIAL)
-          try{
-            if(window.gtag){
               gtag('event','conversion',{
-                'send_to': 'AW-17715024874/iFvFCpy1zb8bEOqnL_9B'
+                'send_to':'AW-17715024874/iFvFCpy1zb8bEOqnL_9B',
+                'event_callback': function(){
+                  if(newWin && !newWin.closed){
+                    newWin.location.href = url;
+                  }
+                }
               });
             }
           }catch(err){}
-
-          var url = 'https://wa.me/'+numero+'?text='+encodeURIComponent(msg);
-          window.location.href = url;
         }, false);
       });
 
@@ -1061,6 +1066,7 @@
         }, false);
       }
 
+      // Controles do vídeo
       var v = document.getElementById('introVideo');
       var unmute = document.getElementById('unmuteBtn');
       var restart = document.getElementById('restartBtn');
@@ -1176,4 +1182,3 @@
   </script>
 </body>
 </html>
-
