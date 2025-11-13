@@ -1015,15 +1015,16 @@
         window.prompt('Copie os dados com CTRL+C / ⌘C e depois ENTER:', text);
       }
 
-      // === CLICKS NO WHATSAPP – ENGAGEMENT + CONVERSÃO ===
+      // CLICKS NO WHATSAPP – ENGAGEMENT + CONVERSÃO + ABRIR EM NOVA ABA
       var waLinks = document.querySelectorAll('.wa');
       waLinks.forEach(function(el){
         el.addEventListener('click', function(e){
           e.preventDefault();
+
           var msg = el.getAttribute('data-msg') || 'Olá, Dr. Rafael.';
           var utm = el.getAttribute('data-utm') || 'na';
+          var url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(msg);
 
-          // Evento de engajamento (GA4)
           try{
             if(window.gtag){
               gtag('event','whatsapp_click',{
@@ -1031,22 +1032,18 @@
                 event_label: utm,
                 value:1
               });
-            }
-          }catch(err){}
 
-          // CONVERSÃO GOOGLE ADS
-          try{
-            if(window.gtag){
               gtag('event','conversion',{
-                'send_to': 'AW-17715024874/iFvFCpy1zb8bEOqnL_9B'
+                'send_to':'AW-17715024874/iFvFCpy1zb8bEOqnL_9B'
               });
             }
           }catch(err){}
 
-          var url = 'https://wa.me/'+numero+'?text='+encodeURIComponent(msg);
-
-          // Abre o WhatsApp SEM FECHAR a landing (nova aba)
-          window.open(url, '_blank');
+          try{
+            window.open(url,'_blank');
+          }catch(err2){
+            window.location.href = url;
+          }
         }, false);
       });
 
@@ -1063,7 +1060,6 @@
         }, false);
       }
 
-      // === CONTROLES DO VÍDEO ===
       var v = document.getElementById('introVideo');
       var unmute = document.getElementById('unmuteBtn');
       var restart = document.getElementById('restartBtn');
