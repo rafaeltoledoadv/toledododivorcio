@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17715024874"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-17715024874');
-</script>
+  <!-- Google tag (gtag.js) – Ads + GA4 no mesmo script -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17715024874"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M06M084R2N"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-M06M084R2N');
-</script>
-  
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-17715024874');
-</script>
+    // Google Ads (conversões)
+    gtag('config', 'AW-17715024874');
+
+    // GA4 (métricas gerais)
+    gtag('config', 'G-M06M084R2N');
+  </script>
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,15 +26,6 @@
   <meta name="googlebot" content="noindex,nofollow,noarchive" />
 
   <link rel="preconnect" href="https://api.whatsapp.com" crossorigin>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M06M084R2N"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('js', new Date());
-    gtag('config', 'G-M06M084R2N');
-
-  </script>
 
   <style>
     :root{
@@ -1030,12 +1015,15 @@
         window.prompt('Copie os dados com CTRL+C / ⌘C e depois ENTER:', text);
       }
 
+      /* CLICKS NO WHATSAPP – ENGAGEMENT + CONVERSÃO */
       var waLinks = document.querySelectorAll('.wa');
       waLinks.forEach(function(el){
         el.addEventListener('click', function(e){
           e.preventDefault();
           var msg = el.getAttribute('data-msg') || 'Olá, Dr. Rafael.';
           var utm = el.getAttribute('data-utm') || 'na';
+
+          // Evento de engajamento (opcional, só para GA4)
           try{
             if(window.gtag){
               gtag('event','whatsapp_click',{
@@ -1045,15 +1033,16 @@
               });
             }
           }catch(err){}
+
+          // CONVERSÃO DO GOOGLE ADS (ESSENCIAL)
           try{
-            if(window.gtag &&
-               window.AW_ID && window.AW_ID.indexOf('XXXX') === -1 &&
-               window.AW_CONVERSION_LABEL && window.AW_CONVERSION_LABEL.indexOf('XXXX') === -1){
+            if(window.gtag){
               gtag('event','conversion',{
-                send_to: window.AW_ID + '/' + window.AW_CONVERSION_LABEL
+                'send_to': 'AW-17715024874/iFvFCpyIzb8bEOqn1_9B'
               });
             }
           }catch(err){}
+
           var url = 'https://wa.me/'+numero+'?text='+encodeURIComponent(msg);
           window.location.href = url;
         }, false);
@@ -1185,13 +1174,5 @@
       }
     });
   </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function(){
-      ...
-    });
-  </script>
-</body>
-</html>
-
 </body>
 </html>
