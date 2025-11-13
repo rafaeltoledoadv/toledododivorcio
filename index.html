@@ -8,14 +8,11 @@
   <meta name="description" content="Divórcio online em cartório (e-notariado) e judicial no Estado do Rio de Janeiro, com atendimento 100% digital pelo WhatsApp.">
   <link rel="canonical" href="https://seu-dominio.com/" />
 
-  <!-- Privacidade: sem SEO orgânico -->
   <meta name="robots" content="noindex,nofollow,noarchive" />
   <meta name="googlebot" content="noindex,nofollow,noarchive" />
 
-  <!-- Performance: preconnect -->
   <link rel="preconnect" href="https://api.whatsapp.com" crossorigin>
 
-  <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-M06M084R2N"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -23,7 +20,6 @@
     gtag('js', new Date());
     gtag('config', 'G-M06M084R2N');
 
-    // Placeholders para Google Ads (preencha quando tiver)
     window.AW_ID = 'AW-XXXXXXXXXX';
     window.AW_CONVERSION_LABEL = 'XXXXXXXXXXXX';
   </script>
@@ -685,7 +681,6 @@
       </p>
 
       <div class="plans">
-        <!-- Cartório -->
         <article class="card">
           <div class="seal">Cartório Incluso</div>
           <span class="badge">Mais rápido</span>
@@ -703,7 +698,7 @@
             <a class="btn btn-primary wa"
                href="#"
                data-utm="plan_cartorio"
-               data-msg="Olá, Dr. Rafael, não tenho filhos menores e quero um orçamento para divórcio em cartório 100% online, com cartório incluso.">
+               data-msg="Olá, Dr. Rafael, não tenho filhos menores e quero fazer meu divórcio em cartório 100% online, com cartório incluso.">
               💬 Contratar via WhatsApp
             </a>
           </div>
@@ -712,7 +707,6 @@
           </p>
         </article>
 
-        <!-- Judicial consensual -->
         <article class="card">
           <span class="badge">Com filhos menores</span>
           <h3>Divórcio Judicial Consensual Online</h3>
@@ -730,16 +724,15 @@
             <a class="btn btn-primary wa"
                href="#"
                data-utm="plan_consensual"
-               data-msg="Olá, Dr. Rafael, temos filhos menores ou gestante e queremos um divórcio consensual online, com pedido de justiça gratuita.">
+               data-msg="Olá, Dr. Rafael, temos filhos menores ou gestante e queremos fazer um divórcio consensual online, pagando apenas os honorários do advogado.">
               💬 Falar agora
             </a>
           </div>
           <p style="font-size:12px;color:var(--muted);margin:4px 0 0;">
-            Mensagem sugerida: <b>“Temos filhos menores and queremos um divórcio amigável online.”</b>
+            Mensagem sugerida: <b>“Temos filhos menores e queremos um divórcio amigável online.”</b>
           </p>
         </article>
 
-        <!-- Judicial litigioso -->
         <article class="card">
           <span class="badge">Quando não há acordo</span>
           <h3>Divórcio Judicial Litigioso Online</h3>
@@ -985,7 +978,6 @@
 
   <script>
     (function(){
-      // Monta URL de WhatsApp (sem depender de URLSearchParams para evitar incompatibilidades)
       function waUrl(msg, utm){
         var base = 'https://api.whatsapp.com/send';
         var q = 'phone=5521996921402';
@@ -996,33 +988,8 @@
       }
 
       function openWA(msg, utm){
-        var baseMsg = msg || 'Olá, Dr. Rafael.';
-        var extra = '\n\n[Origem: anúncio Google · posição: ' + (utm || 'na') + ']';
-
-        try{
-          var raw = localStorage.getItem('ad_attrib');
-          if(raw){
-            var data = null;
-            try{
-              data = JSON.parse(raw);
-            }catch(parseErr){
-              data = null;
-            }
-            if(data){
-              var parts = [];
-              if(data.gclid) parts.push('gclid: ' + data.gclid);
-              if(data.wbraid) parts.push('wbraid: ' + data.wbraid);
-              if(data.gbraid) parts.push('gbraid: ' + data.gbraid);
-              if(parts.length){
-                extra += '\n[Dados do anúncio: ' + parts.join(' · ') + ']';
-              }
-            }
-          }
-        }catch(e){}
-
-        var finalMsg = baseMsg + extra;
+        var finalMsg = msg || 'Olá, Dr. Rafael.';
         var url = waUrl(finalMsg, utm);
-
         try{
           var win = window.open(url, '_blank', 'noopener');
           if(!win){ location.href = url; }
@@ -1032,7 +999,6 @@
       }
 
       function copyTextSafe(text){
-        // 1) Clipboard API se permitido
         if(window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText){
           navigator.clipboard.writeText(text).then(function(){
             alert('Dados copiados! Cole no ConfirmAdv/CNA quando quiser.');
@@ -1086,7 +1052,6 @@
       document.addEventListener('DOMContentLoaded', function(){
         captureAdParams();
 
-        // Delegação de cliques para todos os .wa
         document.body.addEventListener('click', function(e){
           var el = e.target;
           while(el && el !== document.body){
@@ -1123,7 +1088,6 @@
           openWA(msg, utm);
         }, false);
 
-        // Botão copiar OAB
         var btn = document.getElementById('copy-oab-btn');
         if(btn){
           btn.addEventListener('click', function(ev){
@@ -1133,7 +1097,6 @@
           }, false);
         }
 
-        // Controles do vídeo
         var v        = document.getElementById('introVideo');
         var unmute   = document.getElementById('unmuteBtn');
         var restart  = document.getElementById('restartBtn');
@@ -1168,7 +1131,6 @@
             }catch(e){}
           }
 
-          // Tenta autoplay silencioso
           try{
             v.muted = true;
             var p = v.play();
@@ -1188,50 +1150,4 @@
           }
 
           if(restart){
-            restart.addEventListener('click', function(){
-              v.currentTime = 0;
-              v.play().catch(function(){});
-              sync();
-            });
-          }
-
-          if(back10){
-            back10.addEventListener('click', function(){ seekBy(-10); });
-          }
-
-          if(fwd10){
-            fwd10.addEventListener('click', function(){ seekBy(10); });
-          }
-
-          if(playBtn){
-            playBtn.addEventListener('click', function(){
-              if(v.paused){
-                v.play().catch(function(){});
-              }else{
-                v.pause();
-              }
-              sync();
-            });
-          }
-
-          if(unmute){
-            unmute.addEventListener('click', function(){
-              v.muted = false;
-              v.play().catch(function(){});
-              unmute.hidden = true;
-            });
-          }
-
-          v.onerror = function(){
-            if(fallback){ fallback.style.display = 'block'; }
-          };
-
-          v.onplay = sync;
-          v.onpause = sync;
-          sync();
-        }
-      });
-    })();
-  </script>
-</body>
-</html>
+            restart.addEventListener
