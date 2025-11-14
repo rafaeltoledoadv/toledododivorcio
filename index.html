@@ -14,6 +14,21 @@
     // GA4 (métricas gerais)
     gtag('config', 'G-M06M084R2N');
   </script>
+  <!-- Event snippet para Clique WhatsApp – Divórcio 1 Dia -->
+  <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+        'send_to': 'AW-17715024874/IhtoCK2c178bEOqnl_9B',
+        'event_callback': callback
+      });
+      return false;
+    }
+  </script>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -1015,7 +1030,7 @@
         window.prompt('Copie os dados com CTRL+C / ⌘C e depois ENTER:', text);
       }
 
-      // CLICKS NO WHATSAPP – ENGAGEMENT + CONVERSÃO + ABRIR EM NOVA ABA
+           // CLICKS NO WHATSAPP – ENGAGEMENT + CONVERSÃO POR CLIQUE
       var waLinks = document.querySelectorAll('.wa');
       waLinks.forEach(function(el){
         el.addEventListener('click', function(e){
@@ -1025,40 +1040,31 @@
           var utm = el.getAttribute('data-utm') || 'na';
           var url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(msg);
 
+          // Evento de engajamento (opcional, só para GA4/relatório)
           try{
-            if(window.gtag){
-              gtag('event','whatsapp_click',{
-                event_category:'engagement',
+            if (window.gtag) {
+              gtag('event', 'whatsapp_click', {
+                event_category: 'engagement',
                 event_label: utm,
-                value:1
-              });
-
-              gtag('event','conversion',{
-                'send_to':'AW-17715024874/iFvFCpy1zb8bEOqnL_9B'
+                value: 1
               });
             }
-          }catch(err){}
+          } catch(err) {}
 
+          // Conversão + redirecionamento
           try{
-            window.open(url,'_blank');
-          }catch(err2){
+            if (typeof gtag_report_conversion === 'function') {
+              gtag_report_conversion(url);
+            } else {
+              // fallback: se por algum motivo a função não existir, só redireciona
+              window.location.href = url;
+            }
+          } catch(err2){
             window.location.href = url;
           }
         }, false);
       });
 
-      var copyBtn = document.getElementById('copy-oab-btn');
-      if(copyBtn){
-        copyBtn.addEventListener('click', function(ev){
-          ev.preventDefault();
-          copyTextSafe('Rafael Toledo da Silva Duarte - OAB/RJ 227191');
-          try{
-            if(window.gtag){
-              gtag('event','copy_oab');
-            }
-          }catch(err){}
-        }, false);
-      }
 
       var v = document.getElementById('introVideo');
       var unmute = document.getElementById('unmuteBtn');
